@@ -1628,17 +1628,33 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
 
 /* --------------------- Main function to calculate costs -------------------------- */
 async function calculateCost() {
-    const addressInput = document.getElementById('address').value;
-    const selectedMaterial = document.getElementById('material').value;
-    const amountNeeded = parseFloat(document.getElementById('tonsNeeded').value);
+    const addressInput = document.getElementById('address')?.value || '';
+    const selectedMaterial = document.getElementById('material')?.value || '';
+    const amountNeeded = parseFloat(document.getElementById('tonsNeeded')?.value || 0);
     const materialInfo = materialData[selectedMaterial];
     const unit = materialInfo?.sold_by || 'unit';
 
     // Ensure prices are updated based on checkbox selection
-    const priceType = document.getElementById("elitePrice").checked ? "elite_price" : "pro_price";
-    materialInfo.locations.forEach(location => {
-        location.price = location[priceType];
-    });
+    const elitePriceCheckbox = document.getElementById("elitePrice");
+    const proPriceCheckbox = document.getElementById("proPrice");
+
+    let priceType = null;
+
+    // Check if both checkboxes exist before determining price type
+    if (elitePriceCheckbox && elitePriceCheckbox.checked) {
+        priceType = "elite_price";
+    } else if (proPriceCheckbox && proPriceCheckbox.checked) {
+        priceType = "pro_price";
+    }
+
+    // If a valid priceType exists, update locations' prices
+    if (priceType) {
+        materialInfo.locations.forEach(location => {
+            location.price = location[priceType];
+        });
+    } else {
+        console.error("No valid price type selected.");
+    }
 
     // Validate user input
     if (!validateInput(amountNeeded, addressInput)) {
@@ -1815,27 +1831,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Setup event listener for changes in the selected material
     const materialSelect = document.getElementById("material");
-    materialSelect.addEventListener("change", updateUnitRestrictions);
+    if (materialSelect) {
+        materialSelect.addEventListener("change", updateUnitRestrictions);
+    }
 
     // Setup event listener for input validation on the "tonsNeeded" input
     const tonsInput = document.getElementById("tonsNeeded");
     const helperText = document.getElementById("tons-help");
-    tonsInput.addEventListener("input", function () {
-        const selectedMaterial = document.getElementById("material").value;
-        const materialInfo = materialData[selectedMaterial];
-        const unit = materialInfo?.sold_by || 'unit';
-        const min = parseInt(this.min);
-        const value = parseFloat(this.value);
+    if (tonsInput && helperText) {
+        tonsInput.addEventListener("input", function () {
+            const selectedMaterial = document.getElementById("material")?.value || '';
+            const materialInfo = materialData[selectedMaterial];
+            const unit = materialInfo?.sold_by || 'unit';
+            const min = parseInt(this.min);
+            const value = parseFloat(this.value);
 
-        if (value < min) {
-            helperText.style.display = "block";
-            helperText.textContent = `Please enter a value of at least ${min} ${unit}s.`;
-        } else {
-            helperText.style.display = "none";
-        }
-    });
+            if (value < min) {
+                helperText.style.display = "block";
+                helperText.textContent = `Please enter a value of at least ${min} ${unit}s.`;
+            } else {
+                helperText.style.display = "none";
+            }
+        });
+    }
 
-    // Ensure elitePrice is checked by default
+    // Ensure elitePrice is checked by default if checkboxes exist
     const elitePriceCheckbox = document.getElementById("elitePrice");
     const proPriceCheckbox = document.getElementById("proPrice");
 
@@ -1867,31 +1887,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Add event listener for form submission to prevent the default form behavior and refresh functions
     const form = document.getElementById("calcForm");
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
+    if (form) {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
 
-        // Reset materialInfo.locations to the original state before filtering pits/yards
-        Object.keys(materialData).forEach(key => {
-            materialData[key].locations = JSON.parse(JSON.stringify(originalMaterialLocations[key].locations));
+            // Reset materialInfo.locations to the original state before filtering pits/yards
+            Object.keys(materialData).forEach(key => {
+                materialData[key].locations = JSON.parse(JSON.stringify(originalMaterialLocations[key].locations));
+            });
+
+            // Call the cost calculation function
+            calculateCost();
         });
-
-        // Call the cost calculation function
-        calculateCost();
-    });
+    }
 });
 
 // Function to update cost based on selected price type (elite or pro)
 function updateCostBasedOnPrice() {
-    const selectedMaterial = document.getElementById("material").value;
+    const selectedMaterial = document.getElementById("material")?.value || '';
     const materialInfo = materialData[selectedMaterial];
-    const priceType = document.getElementById("elitePrice").checked ? "elite_price" : "pro_price";
+    const priceType = document.getElementById("elitePrice")?.checked ? "elite_price" : "pro_price";
     const unit = materialInfo?.sold_by || 'unit';
 
-    // Update material locations' prices based on selected price type
-    materialInfo.locations.forEach(location => {
-        location.price = location[priceType];
-    });
+    // Ensure priceType exists before proceeding
+    if (priceType) {
+        // Update material locations' prices based on selected price type
+        materialInfo.locations.forEach(location => {
+            location.price = location[priceType];
+        });
 
-    // Recalculate costs based on the new price
-    calculateCost();
+        // Recalculate costs based on the new price
+        calculateCost();
+    } else {
+        console.error("No valid price type selected.");
+    }
 }
