@@ -69,8 +69,8 @@ const materialData = {
     "3_way_garden_soil": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 35.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 43.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 35.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 43.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -85,8 +85,8 @@ const materialData = {
     "barrtech": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 35.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 37.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 35.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 37.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -101,8 +101,8 @@ const materialData = {
     "bedding_sand": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 19.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 12.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 19.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 12.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -117,7 +117,7 @@ const materialData = {
     "bio_infiltration_soil": {
         "sold_by": "yard",
         "locations": [
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 31.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 31.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -132,7 +132,7 @@ const materialData = {
     "bio_retention_soil": {
         "sold_by": "yard",
         "locations": [
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 31.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 31.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -147,7 +147,7 @@ const materialData = {
     "bio_retention_soil_no_sandy_loam": {
         "sold_by": "yard",
         "locations": [
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 31.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 31.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -162,8 +162,8 @@ const materialData = {
     "economy_topsoil": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 10.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 10.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 10.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 10.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -178,9 +178,9 @@ const materialData = {
     "organic_cert_garden_soil": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 28.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 29.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "price": 18.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 28.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 29.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 18.00, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -198,8 +198,8 @@ const materialData = {
     "premium_screened_topsoil": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 26.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 22.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 26.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 22.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -214,8 +214,8 @@ const materialData = {
     "premium_turf": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 27.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 25.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 27.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 25.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -230,9 +230,9 @@ const materialData = {
     "sandy_loam": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 21.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 20.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "DC PIT", "address": "611 W Denison-Chattaroy Rd, Deer Park, WA 99006", "price": 10.50, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 21.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 20.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "DC PIT", "address": "611 W Denison-Chattaroy Rd, Deer Park, WA 99006", "elite_price": 10.50, "pro_price": 0.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -248,7 +248,7 @@ const materialData = {
     "1_minus_crushed_structural": {
         "sold_by": "ton",
         "locations": [
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 10.25, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 10.25, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -263,7 +263,7 @@ const materialData = {
     "3_minus_crushed_concrete": {
         "sold_by": "ton",
         "locations": [
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 8.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 8.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -278,8 +278,8 @@ const materialData = {
     "3_minus_structural_round": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 8.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 8.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 8.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 8.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -294,10 +294,10 @@ const materialData = {
     "58_114_basalt_minus_gravel": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 23.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 23.75, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Perry PIT", "address": "13302 N Perry St, Spokane, WA 99208", "price": 19.50, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Cooridor PIT", "address": "47.683646613378116, -117.55831219627463", "price": 11.25, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 23.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 23.75, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Perry PIT", "address": "13302 N Perry St, Spokane, WA 99208", "elite_price": 19.50, "pro_price": 0.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Cooridor PIT", "address": "47.683646613378116, -117.55831219627463", "elite_price": 11.25, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -312,10 +312,10 @@ const materialData = {
     "58_114_granite_minus_gravel": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 27.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 20.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "JMAC PIT", "address": "47.728763, -117.034429", "price": 11.25, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "CDA PIT", "address": "47.716832, -117.035684", "price": 13.50, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 27.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 20.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "JMAC PIT", "address": "47.728763, -117.034429", "elite_price": 11.25, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "CDA PIT", "address": "47.716832, -117.035684", "elite_price": 13.50, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -330,9 +330,9 @@ const materialData = {
     "asphalt_grindings": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 35.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 31.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hattenburgs PIT", "address": "47.757245449473906, -117.36542930230672", "price": 25.38, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 35.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 31.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hattenburgs PIT", "address": "47.757245449473906, -117.36542930230672", "elite_price": 25.38, "pro_price": 0.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -347,8 +347,8 @@ const materialData = {
     "c33_sand": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 19.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 12.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 19.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 12.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -363,8 +363,8 @@ const materialData = {
     "course_sand": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 19.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 12.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 19.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 12.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -379,9 +379,9 @@ const materialData = {
     "pea_gravel": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 24.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 28.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Sullivan Pre-Mix PIT", "address": "1902 N Sullivan Rd, Spokane Valley, WA 99216", "price": 16.50, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 24.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 28.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Sullivan Pre-Mix PIT", "address": "1902 N Sullivan Rd, Spokane Valley, WA 99216", "elite_price": 16.50, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -396,8 +396,8 @@ const materialData = {
     "sand_gravel_concrete_mix": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 32.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 32.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 32.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 32.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -412,8 +412,8 @@ const materialData = {
     "white_sand": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 88.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Lane Mountain PIT", "address": "3119 WA-231, Valley, WA 99181", "price": 70.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 88.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Lane Mountain PIT", "address": "3119 WA-231, Valley, WA 99181", "elite_price": 70.00, "pro_price": 0.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -429,8 +429,8 @@ const materialData = {
     "1_12_rainbow_river_rock": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 80.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 89.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 80.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 89.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -445,9 +445,9 @@ const materialData = {
     "1_14_champagne_rock": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 113.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 111.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "White Stone Calcium PIT", "address": "2432 US-395, Chewelah, WA 99109", "price": 94.50, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 113.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 111.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "White Stone Calcium PIT", "address": "2432 US-395, Chewelah, WA 99109", "elite_price": 94.50, "pro_price": 0.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -462,8 +462,8 @@ const materialData = {
     "1_14_china_white_rock": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 115.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "White Stone Calcium PIT", "address": "2432 US-395, Chewelah, WA 99109", "price": 96.25, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 115.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "White Stone Calcium PIT", "address": "2432 US-395, Chewelah, WA 99109", "elite_price": 96.25, "pro_price": 0.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -478,8 +478,8 @@ const materialData = {
     "1_granite_chips": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 38.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "CDA Paving & Concrete PIT", "address": "47.716832, -117.035684", "price": 28.88, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 38.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "CDA Paving & Concrete PIT", "address": "47.716832, -117.035684", "elite_price": 28.88, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -494,9 +494,9 @@ const materialData = {
     "1_to_3_basalt_chips": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 32.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 36.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "HardRock PIT", "address": "47.339342, -116.827806", "price": 15.75, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 32.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 36.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "HardRock PIT", "address": "47.339342, -116.827806", "elite_price": 15.75, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -511,9 +511,9 @@ const materialData = {
     "2_blueslate_woodstone": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 62.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 60.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Iron Mountain/Scrivanich PIT", "address": "48.29835281266716, -117.14118002098378", "price": 45.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 62.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 60.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Iron Mountain/Scrivanich PIT", "address": "48.29835281266716, -117.14118002098378", "elite_price": 45.00, "pro_price": 0.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -528,9 +528,9 @@ const materialData = {
     "2_elk_hide": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 53.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 57.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Elk Hide PIT", "address": "47.332319, -116.538415", "price": 30.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 53.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 57.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Elk Hide PIT", "address": "47.332319, -116.538415", "elite_price": 30.00, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -545,9 +545,9 @@ const materialData = {
     "34_river_rock": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 32.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 36.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "JMAC PIT", "address": "47.728763, -117.034429", "price": 18.38, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 32.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 36.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "JMAC PIT", "address": "47.728763, -117.034429", "elite_price": 18.38, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -562,9 +562,9 @@ const materialData = {
     "1_12_river_rock": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 32.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 36.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "JMAC PIT", "address": "47.728763, -117.034429", "price": 18.38, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 32.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 36.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "JMAC PIT", "address": "47.728763, -117.034429", "elite_price": 18.38, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -579,9 +579,9 @@ const materialData = {
     "2_4_river_rock": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 33.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 37.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "CDA Paving & Concrete PIT", "address": "47.716832, -117.035684", "price": 24.50, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 33.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 37.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "CDA Paving & Concrete PIT", "address": "47.716832, -117.035684", "elite_price": 24.50, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -596,9 +596,9 @@ const materialData = {
     "34_114_basalt_chips": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 32.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 36.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "HardRock PIT", "address": "47.339342, -116.827806", "price": 15.75, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 32.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 36.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "HardRock PIT", "address": "47.339342, -116.827806", "elite_price": 15.75, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -613,8 +613,8 @@ const materialData = {
     "38_2_2_to_6_riverbed_mix": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 50.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 50.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 50.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 50.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -629,9 +629,9 @@ const materialData = {
     "autumn_gold": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 67.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 63.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Lane Mountain PIT", "address": "3119 WA-231, Valley, WA 99181", "price": 49.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 67.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 63.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Lane Mountain PIT", "address": "3119 WA-231, Valley, WA 99181", "elite_price": 49.00, "pro_price": 0.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -646,8 +646,8 @@ const materialData = {
     "black_lava_rock": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 113.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 113.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 113.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 113.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -662,8 +662,8 @@ const materialData = {
     "red_lava_rock": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 98.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 98.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 98.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 98.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -679,9 +679,9 @@ const materialData = {
     "aged_dark_fines": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 32.50, "trucks": ["truck_A"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 33.00, "trucks": ["truck_A"] },
-            { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "price": 24.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 32.50, "pro_price": 0.00, "trucks": ["truck_A"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 33.00, "pro_price": 0.00, "trucks": ["truck_A"] },
+            { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 24.00, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 15, "rate": 140}
@@ -693,9 +693,9 @@ const materialData = {
     "engineered_playground_chips": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 47.50, "trucks": ["truck_A"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 48.00, "trucks": ["truck_A"] },
-            { "name": "Premiere PIT", "address": "48.181955, -117.006770", "price": 42.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_D"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 47.50, "pro_price": 0.00, "trucks": ["truck_A"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 48.00, "pro_price": 0.00, "trucks": ["truck_A"] },
+            { "name": "Premiere PIT", "address": "48.181955, -117.006770", "elite_price": 42.00, "pro_price": 0.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_D"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 25, "rate": 140}
@@ -707,9 +707,9 @@ const materialData = {
     "fresh_fines": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 29.50, "trucks": ["truck_A"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 30.00, "trucks": ["truck_A"] },
-            { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "price": 24.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 29.50, "pro_price": 0.00, "trucks": ["truck_A"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 30.00, "pro_price": 0.00, "trucks": ["truck_A"] },
+            { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 24.00, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 25, "rate": 140}
@@ -721,9 +721,9 @@ const materialData = {
     "large_nugget": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 53.50, "trucks": ["truck_A"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 54.00, "trucks": ["truck_A"] },
-            { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "price": 48.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 53.50, "pro_price": 0.00, "trucks": ["truck_A"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 54.00, "pro_price": 0.00, "trucks": ["truck_A"] },
+            { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 48.00, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 25, "rate": 140}
@@ -735,9 +735,9 @@ const materialData = {
     "medium_fine": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 29.50, "trucks": ["truck_A"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 30.00, "trucks": ["truck_A"] },
-            { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "price": 24.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 29.50, "pro_price": 0.00, "trucks": ["truck_A"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 30.00, "pro_price": 0.00, "trucks": ["truck_A"] },
+            { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 24.00, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 25, "rate": 140}
@@ -749,9 +749,9 @@ const materialData = {
     "medium_shred": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 25.50, "trucks": ["truck_A"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 26.00, "trucks": ["truck_A"] },
-            { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "price": 20.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 25.50, "pro_price": 0.00, "trucks": ["truck_A"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 26.00, "pro_price": 0.00, "trucks": ["truck_A"] },
+            { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 20.00, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 25, "rate": 140}
@@ -763,9 +763,9 @@ const materialData = {
     "small_nugget": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 81.50, "trucks": ["truck_A"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 82.00, "trucks": ["truck_A"] },
-            { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "price": 76.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 81.50, "pro_price": 0.00, "trucks": ["truck_A"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 82.00, "pro_price": 0.00, "trucks": ["truck_A"] },
+            { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 76.00, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 25, "rate": 140}
@@ -778,8 +778,8 @@ const materialData = {
     "fractured_granite": {
         "sold_by": "ton",
         "locations": [
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 107.00, "trucks": ["truck_A", "truck_B", "truck_E"] },
-            { "name": "New Port Equipment PIT", "address": "328772 U.S. Rte 2, Newport, WA 99156", "price": 77.50, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_E"] }
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 107.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_E"] },
+            { "name": "New Port Equipment PIT", "address": "328772 U.S. Rte 2, Newport, WA 99156", "elite_price": 77.50, "pro_price": 0.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_E"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -794,8 +794,8 @@ const materialData = {
     "round_basalt": {
         "sold_by": "ton",
         "locations": [
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 74.00, "trucks": ["truck_A", "truck_B", "truck_E"] },
-            { "name": "Cheney Boulder PIT", "address": "47.46744669160258, -117.545016359873", "price": 60.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_E"] }
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 74.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_E"] },
+            { "name": "Cheney Boulder PIT", "address": "47.46744669160258, -117.545016359873", "elite_price": 60.00, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_E"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -810,9 +810,9 @@ const materialData = {
     "round_granite": {
         "sold_by": "ton",
         "locations": [
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 85.00, "trucks": ["truck_A", "truck_B", "truck_E"] },
-            { "name": "Post Falls Pleasant View Interstate PIT", "address": "1545 N Pleasant View Rd, Post Falls, ID 83854", "price": 62.50, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_E"] },
-            { "name": "JMAC PIT", "address": "47.728763, -117.034429", "price": 62.50, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_E"] }
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 85.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_E"] },
+            { "name": "Post Falls Pleasant View Interstate PIT", "address": "1545 N Pleasant View Rd, Post Falls, ID 83854", "elite_price": 62.50, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_E"] },
+            { "name": "JMAC PIT", "address": "47.728763, -117.034429", "elite_price": 62.50, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_E"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -827,8 +827,8 @@ const materialData = {
     "valley_boulders": {
         "sold_by": "ton",
         "locations": [
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 120.00, "trucks": ["truck_A", "truck_B", "truck_E"] },
-            { "name": "Weusthoff Excavation PIT", "address": "48.187739, -117.730438", "price": 105.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_E"] }
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 120.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_E"] },
+            { "name": "Weusthoff Excavation PIT", "address": "48.187739, -117.730438", "elite_price": 105.00, "pro_price": 0.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_E"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -844,8 +844,8 @@ const materialData = {
     "bulk_ice_kicker_blue_salt": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 230.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Marietta PIT", "address": "15201 E Marietta Ave, Spokane Valley, WA 99216", "price": 194.60, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 230.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Marietta PIT", "address": "15201 E Marietta Ave, Spokane Valley, WA 99216", "elite_price": 194.60, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -860,8 +860,8 @@ const materialData = {
     "bulk_white_quicksalt": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 204.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Marietta PIT", "address": "15201 E Marietta Ave, Spokane Valley, WA 99216", "price": 172.20, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 204.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Marietta PIT", "address": "15201 E Marietta Ave, Spokane Valley, WA 99216", "elite_price": 172.20, "pro_price": 0.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -876,8 +876,8 @@ const materialData = {
     "deicing_salt_sand_mix": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 43.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 40.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 43.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 40.50, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}
@@ -892,8 +892,8 @@ const materialData = {
     "deicing_salt_sand_torp_mix": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "price": 49.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "price": 46.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 49.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 46.00, "pro_price": 0.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 140}

@@ -103,6 +103,16 @@ form button {
     cursor: not-allowed;
 }
 
+.pricing-checkboxes {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.pricing-checkboxes input[type="checkbox"] {
+    margin-right: 5px;
+}
+
 form button {
     background-color: #4CAF50;
     color: white;
