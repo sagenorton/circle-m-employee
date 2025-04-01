@@ -926,6 +926,28 @@ const yardLocations = {
 
 
 
+// Function to update cost based on selected price type (elite or pro)
+function updateCostBasedOnPrice() {
+    const selectedMaterial = document.getElementById("material")?.value || '';
+    const materialInfo = materialData[selectedMaterial];
+    const priceType = document.getElementById("elitePrice")?.checked ? "elite_price" : "pro_price";
+
+    // Ensure priceType exists before proceeding
+    if (priceType) {
+        // Update material locations' prices based on selected price type
+        materialInfo.locations.forEach(location => {
+            location.price = location[priceType];
+        });
+
+        // Recalculate costs based on the new price
+        calculateCost();
+    }
+}
+
+
+
+
+
 /* --------------------- Function to update unit restrictions dynamically -------------------------- */
 function updateUnitRestrictions() {
     const materialSelect = document.getElementById("material");
@@ -1866,48 +1888,35 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Ensure the "ELITE" pricing radio is checked by default
-    const elitePriceRadio = document.getElementById("elitePricing");
-    if (elitePriceRadio) {
-        elitePriceRadio.checked = true; // Default elitePricing to checked
-    }
+    // Ensure elitePrice is checked by default if checkboxes exist
+    const elitePriceCheckbox = document.getElementById("elitePrice");
+    const proPriceCheckbox = document.getElementById("proPrice");
 
-    // Function to update cost based on selected price type (elite or pro)
-    function updateCostBasedOnPrice() {
-        const selectedMaterial = document.getElementById("material")?.value || '';
-        const materialInfo = materialData[selectedMaterial];
+    if (elitePriceCheckbox) elitePriceCheckbox.checked = true;
 
-        // Get the selected pricing option (either "elite" or "pro")
-        const priceType = document.querySelector('input[name="pricing"]:checked').value === "elite" ? "elite_price" : "pro_price";
-
-        // Ensure priceType exists before proceeding
-        if (priceType) {
-            // Update material locations' prices based on selected price type
-            materialInfo.locations.forEach(location => {
-                location.price = location[priceType];
-            });
-
-            // Recalculate costs based on the new price
-            calculateCost();
-        } else {
-            console.error("No valid price type selected.");
-            alert("Please select a valid price type (Elite or Pro).");
-        }
-    }
-
-    // Event listener to handle price selection based on the radio button
+    // Event listener to ensure only one checkbox is selected at a time
     function handlePriceSelection() {
-        updateCostBasedOnPrice(); // Update cost based on selected price
-    }
+        if (elitePriceCheckbox && proPriceCheckbox) {
+            // If both checkboxes are checked, uncheck proPrice
+            if (elitePriceCheckbox.checked && proPriceCheckbox.checked) {
+                proPriceCheckbox.checked = false;
+            }
+    
+            // If neither is checked, default to elitePrice
+            if (!elitePriceCheckbox.checked && !proPriceCheckbox.checked) {
+                elitePriceCheckbox.checked = true;
+            }
+    
+            // After checkbox change, update the cost based on the selected price
+            updateCostBasedOnPrice();
+        }
+    }    
 
-    // Add event listeners for price selection (radio buttons)
-    const pricingRadios = document.querySelectorAll('input[name="pricing"]');
-    pricingRadios.forEach(radio => {
-        radio.addEventListener("change", handlePriceSelection);
-    });
+    // Add event listeners for price selection
+    if (elitePriceCheckbox) elitePriceCheckbox.addEventListener("change", handlePriceSelection);
+    if (proPriceCheckbox) proPriceCheckbox.addEventListener("change", handlePriceSelection);
 
-    // Ensure the price selection function runs on page load as well
-    handlePriceSelection(); // Runs on page load to set the initial cost based on the default price
+    handlePriceSelection();
 
     // Add event listener for form submission to prevent the default form behavior and refresh functions
     const form = document.getElementById("calcForm");
