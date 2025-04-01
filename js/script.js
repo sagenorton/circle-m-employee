@@ -1634,6 +1634,12 @@ async function calculateCost() {
     const materialInfo = materialData[selectedMaterial];
     const unit = materialInfo?.sold_by || 'unit';
 
+    // Ensure prices are updated based on checkbox selection
+    const priceType = document.getElementById("elitePrice").checked ? "elite_price" : "pro_price";
+    materialInfo.locations.forEach(location => {
+        location.price = location[priceType];
+    });
+
     // Validate user input
     if (!validateInput(amountNeeded, addressInput)) {
         console.error("Validation failed. Aborting calculation.");
@@ -1796,6 +1802,7 @@ function displayResults(totalCost, detailedCosts, unit) {
 
 
 
+
 /* --------------------- Event Listeners -------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
     updateUnitRestrictions();
@@ -1828,6 +1835,36 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Ensure elitePrice is checked by default
+    const elitePriceCheckbox = document.getElementById("elitePrice");
+    const proPriceCheckbox = document.getElementById("proPrice");
+
+    if (elitePriceCheckbox) elitePriceCheckbox.checked = true;
+
+    // Event listener to ensure only one checkbox is selected at a time
+    function handlePriceSelection() {
+        if (elitePriceCheckbox && proPriceCheckbox) {
+            // If both checkboxes are checked, uncheck proPrice
+            if (elitePriceCheckbox.checked && proPriceCheckbox.checked) {
+                proPriceCheckbox.checked = false;
+            }
+
+            // If neither is checked, default to elitePrice
+            if (!elitePriceCheckbox.checked && !proPriceCheckbox.checked) {
+                elitePriceCheckbox.checked = true;
+            }
+
+            // After checkbox change, update the cost based on the selected price
+            updateCostBasedOnPrice();
+        }
+    }
+
+    // Add event listeners for price selection
+    if (elitePriceCheckbox) elitePriceCheckbox.addEventListener("change", handlePriceSelection);
+    if (proPriceCheckbox) proPriceCheckbox.addEventListener("change", handlePriceSelection);
+
+    handlePriceSelection();
+
     // Add event listener for form submission to prevent the default form behavior and refresh functions
     const form = document.getElementById("calcForm");
     form.addEventListener("submit", function (event) {
@@ -1842,3 +1879,19 @@ document.addEventListener("DOMContentLoaded", () => {
         calculateCost();
     });
 });
+
+// Function to update cost based on selected price type (elite or pro)
+function updateCostBasedOnPrice() {
+    const selectedMaterial = document.getElementById("material").value;
+    const materialInfo = materialData[selectedMaterial];
+    const priceType = document.getElementById("elitePrice").checked ? "elite_price" : "pro_price";
+    const unit = materialInfo?.sold_by || 'unit';
+
+    // Update material locations' prices based on selected price type
+    materialInfo.locations.forEach(location => {
+        location.price = location[priceType];
+    });
+
+    // Recalculate costs based on the new price
+    calculateCost();
+}

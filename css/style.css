@@ -103,14 +103,28 @@ form button {
     cursor: not-allowed;
 }
 
-.pricing-checkboxes {
+.pricing-radio-buttons {
     display: flex;
     gap: 10px;
     align-items: center;
 }
 
-.pricing-checkboxes input[type="checkbox"] {
+.pricing-radio-buttons input[type="radio"] {
     margin-right: 5px;
+    vertical-align: middle;
+}
+
+.pricing-radio-buttons label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.pricing-radio-buttons input[id="elitePricing"] + label {
+    color: #4CAF50;
+}
+
+.pricing-radio-buttons input[id="proPricing"] + label {
+    color: crimson;
 }
 
 form button {
