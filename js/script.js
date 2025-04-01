@@ -33,8 +33,10 @@ function initializeAutocomplete() {
     const addressInput = document.getElementById("address");
 
     if (addressInput) {
+        // Initialize the PlaceAutocompleteElement
         const autocomplete = new google.maps.places.PlaceAutocompleteElement(addressInput, {
-            types: ["geocode"] // Suggest only address locations
+            types: ["geocode"], // Suggest only address locations
+            fields: ["formatted_address", "geometry", "name"] // Specify the fields to retrieve
         });
 
         // Add event listener to handle when a user selects an address
@@ -51,8 +53,8 @@ function initializeAutocomplete() {
 
         console.log("Google Places Autocomplete initialized and selection event added.");
     }
-
 }
+
 
 // Initialize Google Maps API and Autocomplete
 window.initMap = function () {
