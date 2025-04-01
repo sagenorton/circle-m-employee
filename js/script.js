@@ -33,7 +33,7 @@ function initializeAutocomplete() {
     const addressInput = document.getElementById("address");
 
     if (addressInput) {
-        const autocomplete = new google.maps.places.Autocomplete(addressInput, {
+        const autocomplete = new google.maps.places.PlaceAutocompleteElement(addressInput, {
             types: ["geocode"] // Suggest only address locations
         });
 
