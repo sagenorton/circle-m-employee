@@ -1009,14 +1009,14 @@ function validateInput(tonsNeeded, dropOffAddress) {
     const addressHelper = document.getElementById("address-help");
     const tonsHelper = document.getElementById("tons-help");
 
-    // Reset previous errors
+    // Reset previous errors (this ensures errors don't appear on page load)
     addressField.style.border = "";
     tonsField.style.border = "";
     addressHelper.style.display = "none";
     tonsHelper.style.display = "none";
 
-    // Validate drop-off address
-    if (!dropOffAddress.trim()) {
+    // Validate drop-off address only if user starts typing or submits
+    if (dropOffAddress.trim() === "") {
         addressField.style.border = "2px solid red";
         addressHelper.style.display = "block";
         addressHelper.textContent = "Please enter a valid drop-off address.";
@@ -1025,7 +1025,7 @@ function validateInput(tonsNeeded, dropOffAddress) {
 
     // Validate tons/yards needed
     const min = parseInt(tonsField.min);
-    if (isNaN(tonsNeeded) || tonsNeeded < min ) {
+    if (isNaN(tonsNeeded) || tonsNeeded < min) {
         tonsField.style.border = "2px solid red";
         tonsHelper.style.display = "block";
         tonsHelper.textContent = `Please enter a value of ${min} or more.`;
@@ -1943,13 +1943,20 @@ document.addEventListener("DOMContentLoaded", () => {
         form.addEventListener("submit", function (event) {
             event.preventDefault();
 
-            // Reset materialInfo.locations to the original state before filtering pits/yards
-            Object.keys(materialData).forEach(key => {
-                materialData[key].locations = JSON.parse(JSON.stringify(originalMaterialLocations[key].locations));
-            });
+            // Get the user input values for validation
+            const addressInput = document.getElementById("address").value;
+            const tonsNeededInput = parseFloat(document.getElementById("tonsNeeded").value);
 
-            // Call the cost calculation function
-            calculateCost();
+            // Only proceed with calculation if validation passes
+            if (validateInput(tonsNeededInput, addressInput)) {
+                // Reset materialInfo.locations to the original state before filtering pits/yards
+                Object.keys(materialData).forEach(key => {
+                    materialData[key].locations = JSON.parse(JSON.stringify(originalMaterialLocations[key].locations));
+                });
+
+                // Call the cost calculation function
+                calculateCost();
+            }
         });
     }
 });
