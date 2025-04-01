@@ -26,16 +26,14 @@ function loadGoogleMapsApi() {
     document.head.appendChild(script);
 }
 
-
-
 function initializeAutocomplete() {
     const addressInput = document.getElementById("address");
 
     if (addressInput) {
         // Initialize the PlaceAutocompleteElement
         const autocomplete = new google.maps.places.PlaceAutocompleteElement(addressInput, {
-            types: ["geocode"], // Suggest only address locations
-            fields: ["formatted_address", "geometry", "name"] // Specify the fields to retrieve
+            types: ["geocode"],
+            fields: ["formatted_address", "geometry", "name"]
         });
 
         // Add event listener to handle when a user selects an address
@@ -54,13 +52,11 @@ function initializeAutocomplete() {
     }
 }
 
-
 // Initialize Google Maps API and Autocomplete
 window.initMap = function () {
     console.log("Google Maps API loaded successfully.");
-    initializeAutocomplete(); // Ensure autocomplete is initialized when Maps API is ready
+    initializeAutocomplete();
 };
-
 
 
 
