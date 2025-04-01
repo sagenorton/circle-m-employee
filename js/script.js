@@ -1002,8 +1002,6 @@ function updateUnitRestrictions() {
 
 
 
-let formSubmitted = false;
-
 /* --------------------- Validate user inputs -------------------------- */
 function validateInput(tonsNeeded, dropOffAddress) {
     const addressField = document.getElementById("address");
@@ -1011,36 +1009,30 @@ function validateInput(tonsNeeded, dropOffAddress) {
     const addressHelper = document.getElementById("address-help");
     const tonsHelper = document.getElementById("tons-help");
 
-    if (!formSubmitted) {
-        return true; // Skip validation display before form is submitted
-    }
-
-    // Reset previous errors only when the form is submitted
+    // Reset previous errors
     addressField.style.border = "";
     tonsField.style.border = "";
     addressHelper.style.display = "none";
     tonsHelper.style.display = "none";
 
-    let isValid = true;
-
-    // Validate drop-off address only when the form is submitted
-    if (dropOffAddress.trim() === "") {
+    // Validate drop-off address
+    if (!dropOffAddress.trim()) {
         addressField.style.border = "2px solid red";
         addressHelper.style.display = "block";
         addressHelper.textContent = "Please enter a valid drop-off address.";
-        isValid = false;
+        return false;
     }
 
-    // Validate tons/yards needed only when the form is submitted
+    // Validate tons/yards needed
     const min = parseInt(tonsField.min);
-    if (isNaN(tonsNeeded) || tonsNeeded < min) {
+    if (isNaN(tonsNeeded) || tonsNeeded < min ) {
         tonsField.style.border = "2px solid red";
         tonsHelper.style.display = "block";
         tonsHelper.textContent = `Please enter a value of ${min} or more.`;
-        isValid = false;
+        return false;
     }
 
-    return isValid;
+    return true;
 }
 
 
@@ -1949,23 +1941,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("calcForm");
     if (form) {
         form.addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent default form submission
-            formSubmitted = true;
+            event.preventDefault();
 
-            // Get the user input values for validation
-            const addressInput = document.getElementById("address").value;
-            const tonsNeededInput = parseFloat(document.getElementById("tonsNeeded").value);
+            // Reset materialInfo.locations to the original state before filtering pits/yards
+            Object.keys(materialData).forEach(key => {
+                materialData[key].locations = JSON.parse(JSON.stringify(originalMaterialLocations[key].locations));
+            });
 
-            // Only proceed with calculation if validation passes
-            if (validateInput(tonsNeededInput, addressInput)) {
-                // Reset materialInfo.locations to the original state before filtering pits/yards
-                Object.keys(materialData).forEach(key => {
-                    materialData[key].locations = JSON.parse(JSON.stringify(originalMaterialLocations[key].locations));
-                });
-
-                // Call the cost calculation function
-                calculateCost();
-            }
+            // Call the cost calculation function
+            calculateCost();
         });
     }
 });
