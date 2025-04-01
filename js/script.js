@@ -28,7 +28,6 @@ function loadGoogleMapsApi() {
 
 
 
-/* --------------------- Initialize Google Places Autocomplete -------------------------- */
 function initializeAutocomplete() {
     const addressInput = document.getElementById("address");
 
