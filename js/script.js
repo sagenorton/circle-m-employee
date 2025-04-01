@@ -1723,6 +1723,11 @@ async function calculateCost() {
         location.price = location[priceType];
     });
 
+    if (!selectedMaterial || !addressInput || isNaN(amountNeeded) || amountNeeded <= 0) {
+        console.warn("calculateCost() called too early or with incomplete inputs. Skipping.");
+        return;
+    }    
+
     // Validate user input
     if (!validateInput(amountNeeded, addressInput)) {
         console.error("Validation failed. Aborting calculation.");
@@ -1960,8 +1965,12 @@ document.addEventListener("DOMContentLoaded", () => {
         proPriceRadio.addEventListener("change", () => handlePriceSelection(true));
     }
 
-    // Initial call to handle price selection logic (this ensures default selection on load)
-    handlePriceSelection();
+    // Set default price radio button without triggering a cost calculation
+    if (elitePriceRadio && !elitePriceRadio.checked && !proPriceRadio.checked) {
+        elitePriceRadio.checked = true;
+        updateCostBasedOnPrice();
+    }
+
 
     // Add event listener for form submission to prevent the default form behavior and refresh functions
     const form = document.getElementById("calcForm");
