@@ -941,9 +941,6 @@ function updateCostBasedOnPrice() {
 
         // Recalculate costs based on the new price
         calculateCost();
-    } else {
-        console.error("No valid price type selected.");
-        alert("Please select a valid price type (Elite or Pro).");
     }
 }
 
@@ -1895,7 +1892,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const elitePriceCheckbox = document.getElementById("elitePrice");
     const proPriceCheckbox = document.getElementById("proPrice");
 
-    if (elitePriceCheckbox) elitePriceCheckbox.checked = true;
+    if (elitePriceCheckbox) {
+        elitePriceCheckbox.checked = true; // Default elitePrice to checked
+    }
 
     // Event listener to ensure only one checkbox is selected at a time
     function handlePriceSelection() {
@@ -1919,6 +1918,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elitePriceCheckbox) elitePriceCheckbox.addEventListener("change", handlePriceSelection);
     if (proPriceCheckbox) proPriceCheckbox.addEventListener("change", handlePriceSelection);
 
+    // Ensure the price selection function runs on page load as well
     handlePriceSelection();
 
     // Add event listener for form submission to prevent the default form behavior and refresh functions
