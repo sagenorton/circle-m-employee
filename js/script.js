@@ -1929,26 +1929,36 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elitePriceRadio) elitePriceRadio.checked = true; // Set default radio button
 
     // Event listener to ensure only one radio button is selected at a time
-    function handlePriceSelection() {
+    function handlePriceSelection(shouldRecalculate = false) {
         if (elitePriceRadio && proPriceRadio) {
-            // If both radio buttons are selected (which shouldn't happen), uncheck proPrice
             if (elitePriceRadio.checked && proPriceRadio.checked) {
                 proPriceRadio.checked = false;
             }
-
-            // If neither radio button is checked, default to elitePrice
+    
             if (!elitePriceRadio.checked && !proPriceRadio.checked) {
                 elitePriceRadio.checked = true;
             }
-
-            // After radio button change, update the cost based on the selected price
+    
             updateCostBasedOnPrice();
+    
+            if (shouldRecalculate) {
+                const address = document.getElementById("address")?.value || "";
+                const tons = parseFloat(document.getElementById("tonsNeeded")?.value || 0);
+    
+                if (address && !isNaN(tons) && tons > 0) {
+                    calculateCost();
+                }
+            }
         }
-    }
+    }    
 
-    // Add event listeners for radio button selection
-    if (elitePriceRadio) elitePriceRadio.addEventListener("change", handlePriceSelection);
-    if (proPriceRadio) proPriceRadio.addEventListener("change", handlePriceSelection);
+    // Add event listeners for radio button selection with conditional cost calculation
+    if (elitePriceRadio) {
+        elitePriceRadio.addEventListener("change", () => handlePriceSelection(true));
+    }
+    if (proPriceRadio) {
+        proPriceRadio.addEventListener("change", () => handlePriceSelection(true));
+    }
 
     // Initial call to handle price selection logic (this ensures default selection on load)
     handlePriceSelection();
