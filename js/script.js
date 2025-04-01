@@ -926,6 +926,31 @@ const yardLocations = {
 
 
 
+// Function to update cost based on selected price type (elite or pro)
+function updateCostBasedOnPrice() {
+    const selectedMaterial = document.getElementById("material")?.value || '';
+    const materialInfo = materialData[selectedMaterial];
+    const priceType = document.getElementById("elitePrice")?.checked ? "elite_price" : "pro_price";
+
+    // Ensure priceType exists before proceeding
+    if (priceType) {
+        // Update material locations' prices based on selected price type
+        materialInfo.locations.forEach(location => {
+            location.price = location[priceType];
+        });
+
+        // Recalculate costs based on the new price
+        calculateCost();
+    } else {
+        console.error("No valid price type selected.");
+        alert("Please select a valid price type (Elite or Pro).");
+    }
+}
+
+
+
+
+
 /* --------------------- Function to update unit restrictions dynamically -------------------------- */
 function updateUnitRestrictions() {
     const materialSelect = document.getElementById("material");
@@ -1632,7 +1657,16 @@ async function calculateCost() {
     const selectedMaterial = document.getElementById('material')?.value || '';
     const amountNeeded = parseFloat(document.getElementById('tonsNeeded')?.value || 0);
     const materialInfo = materialData[selectedMaterial];
-    const unit = materialInfo?.sold_by || 'unit';
+
+    // Safeguard to ensure materialInfo is available
+    if (!materialInfo) {
+        console.error(`No material info found for the selected material: ${selectedMaterial}`);
+        alert("Selected material info is not available.");
+        return;
+    }
+
+    // Default to 'unit' if 'sold_by' is not available
+    const unit = materialInfo.sold_by || 'unit';
 
     // Ensure prices are updated based on checkbox selection
     const elitePriceCheckbox = document.getElementById("elitePrice");
@@ -1654,6 +1688,8 @@ async function calculateCost() {
         });
     } else {
         console.error("No valid price type selected.");
+        alert("Please select a valid price type (Elite or Pro).");
+        return;
     }
 
     // Validate user input
@@ -1901,24 +1937,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-
-// Function to update cost based on selected price type (elite or pro)
-function updateCostBasedOnPrice() {
-    const selectedMaterial = document.getElementById("material")?.value || '';
-    const materialInfo = materialData[selectedMaterial];
-    const priceType = document.getElementById("elitePrice")?.checked ? "elite_price" : "pro_price";
-    const unit = materialInfo?.sold_by || 'unit';
-
-    // Ensure priceType exists before proceeding
-    if (priceType) {
-        // Update material locations' prices based on selected price type
-        materialInfo.locations.forEach(location => {
-            location.price = location[priceType];
-        });
-
-        // Recalculate costs based on the new price
-        calculateCost();
-    } else {
-        console.error("No valid price type selected.");
-    }
-}
