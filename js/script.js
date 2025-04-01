@@ -1009,30 +1009,32 @@ function validateInput(tonsNeeded, dropOffAddress) {
     const addressHelper = document.getElementById("address-help");
     const tonsHelper = document.getElementById("tons-help");
 
-    // Reset previous errors (this ensures errors don't appear on page load)
+    // Reset previous errors only when the form is submitted
     addressField.style.border = "";
     tonsField.style.border = "";
     addressHelper.style.display = "none";
     tonsHelper.style.display = "none";
 
-    // Validate drop-off address only if user starts typing or submits
+    let isValid = true;
+
+    // Validate drop-off address only when the form is submitted
     if (dropOffAddress.trim() === "") {
         addressField.style.border = "2px solid red";
         addressHelper.style.display = "block";
         addressHelper.textContent = "Please enter a valid drop-off address.";
-        return false;
+        isValid = false;
     }
 
-    // Validate tons/yards needed
+    // Validate tons/yards needed only when the form is submitted
     const min = parseInt(tonsField.min);
     if (isNaN(tonsNeeded) || tonsNeeded < min) {
         tonsField.style.border = "2px solid red";
         tonsHelper.style.display = "block";
         tonsHelper.textContent = `Please enter a value of ${min} or more.`;
-        return false;
+        isValid = false;
     }
 
-    return true;
+    return isValid;
 }
 
 
@@ -1941,7 +1943,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("calcForm");
     if (form) {
         form.addEventListener("submit", function (event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent default form submission
 
             // Get the user input values for validation
             const addressInput = document.getElementById("address").value;
