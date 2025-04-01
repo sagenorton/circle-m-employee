@@ -119,11 +119,11 @@ form button {
     font-weight: bold;
 }
 
-.pricing-radio-buttons input[id="elitePricing"] + label {
+.pricing-radio-buttons input[id="elitePrice"] + label {
     color: #4CAF50;
 }
 
-.pricing-radio-buttons input[id="proPricing"] + label {
+.pricing-radio-buttons input[id="proPrice"] + label {
     color: crimson;
 }
 
