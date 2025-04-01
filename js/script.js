@@ -34,24 +34,40 @@ function initializeAutocomplete() {
 
     if (addressInput) {
         const autocomplete = new google.maps.places.Autocomplete(addressInput, {
-            types: ["geocode"] // Suggest only address locations
+            types: ["geocode"]
         });
 
-        // Add event listener to handle when a user selects an address
+        // Track if the user has interacted with autocomplete
+        let userInteracted = false;
+
+        addressInput.addEventListener("keydown", () => {
+            userInteracted = true;
+        });
+
         autocomplete.addListener("place_changed", function () {
             const place = autocomplete.getPlace();
-            if (!place.geometry) {
+
+            // Only show error if the user interacted and no geometry is available
+            if (userInteracted && !place.geometry) {
                 console.error("No details available for input: " + addressInput.value);
+                const addressHelper = document.getElementById("address-help");
+                if (addressHelper) {
+                    addressHelper.textContent = "Please select a valid address from the suggestions.";
+                    addressHelper.style.display = "block";
+                }
                 return;
             }
-            // Auto-fill the address input field with the selected place
-            addressInput.value = place.formatted_address;
-            console.log("Selected Address:", place.formatted_address);
+
+            if (place.geometry) {
+                addressInput.value = place.formatted_address;
+                console.log("Selected Address:", place.formatted_address);
+                const addressHelper = document.getElementById("address-help");
+                if (addressHelper) addressHelper.style.display = "none";
+            }
         });
 
-        console.log("Google Places Autocomplete initialized and selection event added.");
+        console.log("Google Places Autocomplete initialized with interaction safety.");
     }
-
 }
 
 // Initialize Google Maps API and Autocomplete
