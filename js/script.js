@@ -930,13 +930,31 @@ const yardLocations = {
 function updateCostBasedOnPrice() {
     const selectedMaterial = document.getElementById("material")?.value || '';
     const materialInfo = materialData[selectedMaterial];
-    const priceType = document.getElementById("elitePrice")?.checked ? "elite_price" : "pro_price";
+    
+    // Get the radio buttons
+    const elitePriceRadio = document.getElementById("elitePrice");
+    const proPriceRadio = document.getElementById("proPrice");
 
-    // Ensure priceType exists before proceeding
-    if (priceType) {
+    // Determine the selected price type
+    let priceType = null;
+
+    if (elitePriceRadio && elitePriceRadio.checked) {
+        priceType = "elite_price";
+    } else if (proPriceRadio && proPriceRadio.checked) {
+        priceType = "pro_price";
+    }
+
+    // Default to elite_price if none selected
+    if (!priceType) {
+        priceType = "elite_price"; // Fallback to elite_price if neither is selected
+        if (elitePriceRadio) elitePriceRadio.checked = true; // Ensure elitePrice is checked
+    }
+
+    // Ensure materialInfo and priceType exist before proceeding
+    if (materialInfo && priceType) {
         // Update material locations' prices based on selected price type
         materialInfo.locations.forEach(location => {
-            location.price = location[priceType];
+            location.price = location[priceType];  // Use the correct price based on selected type
         });
 
         // Recalculate costs based on the new price
@@ -1665,29 +1683,29 @@ async function calculateCost() {
     // Default to 'unit' if 'sold_by' is not available
     const unit = materialInfo.sold_by || 'unit';
 
-    // Ensure prices are updated based on checkbox selection
-    const elitePriceCheckbox = document.getElementById("elitePrice");
-    const proPriceCheckbox = document.getElementById("proPrice");
+    // Ensure prices are updated based on radio button selection
+    const elitePriceRadio = document.getElementById("elitePrice");
+    const proPriceRadio = document.getElementById("proPrice");
 
     let priceType = null;
 
-    // Check if both checkboxes exist before determining price type
-    if (elitePriceCheckbox && elitePriceCheckbox.checked) {
+    // Check which radio button is selected
+    if (elitePriceRadio && elitePriceRadio.checked) {
         priceType = "elite_price";
-    } else if (proPriceCheckbox && proPriceCheckbox.checked) {
+    } else if (proPriceRadio && proPriceRadio.checked) {
         priceType = "pro_price";
     }
 
-    // If a valid priceType exists, update locations' prices
-    if (priceType) {
-        materialInfo.locations.forEach(location => {
-            location.price = location[priceType];
-        });
-    } else {
-        console.error("No valid price type selected.");
-        alert("Please select a valid price type (Elite or Pro).");
-        return;
+    // Default to elite_price if no valid priceType selected
+    if (!priceType) {
+        priceType = "elite_price"; // Fallback to elite_price if none selected
+        elitePriceRadio.checked = true; // Ensure elitePrice is checked by default
     }
+
+    // Update material locations' prices based on selected price type
+    materialInfo.locations.forEach(location => {
+        location.price = location[priceType];
+    });
 
     // Validate user input
     if (!validateInput(amountNeeded, addressInput)) {
@@ -1888,34 +1906,35 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Ensure elitePrice is checked by default if checkboxes exist
-    const elitePriceCheckbox = document.getElementById("elitePrice");
-    const proPriceCheckbox = document.getElementById("proPrice");
+    // Ensure elitePrice is checked by default if radio buttons exist
+    const elitePriceRadio = document.getElementById("elitePrice");
+    const proPriceRadio = document.getElementById("proPrice");
 
-    if (elitePriceCheckbox) elitePriceCheckbox.checked = true;
+    if (elitePriceRadio) elitePriceRadio.checked = true; // Set default radio button
 
-    // Event listener to ensure only one checkbox is selected at a time
+    // Event listener to ensure only one radio button is selected at a time
     function handlePriceSelection() {
-        if (elitePriceCheckbox && proPriceCheckbox) {
-            // If both checkboxes are checked, uncheck proPrice
-            if (elitePriceCheckbox.checked && proPriceCheckbox.checked) {
-                proPriceCheckbox.checked = false;
+        if (elitePriceRadio && proPriceRadio) {
+            // If both radio buttons are selected (which shouldn't happen), uncheck proPrice
+            if (elitePriceRadio.checked && proPriceRadio.checked) {
+                proPriceRadio.checked = false;
             }
-    
-            // If neither is checked, default to elitePrice
-            if (!elitePriceCheckbox.checked && !proPriceCheckbox.checked) {
-                elitePriceCheckbox.checked = true;
+
+            // If neither radio button is checked, default to elitePrice
+            if (!elitePriceRadio.checked && !proPriceRadio.checked) {
+                elitePriceRadio.checked = true;
             }
-    
-            // After checkbox change, update the cost based on the selected price
+
+            // After radio button change, update the cost based on the selected price
             updateCostBasedOnPrice();
         }
-    }    
+    }
 
-    // Add event listeners for price selection
-    if (elitePriceCheckbox) elitePriceCheckbox.addEventListener("change", handlePriceSelection);
-    if (proPriceCheckbox) proPriceCheckbox.addEventListener("change", handlePriceSelection);
+    // Add event listeners for radio button selection
+    if (elitePriceRadio) elitePriceRadio.addEventListener("change", handlePriceSelection);
+    if (proPriceRadio) proPriceRadio.addEventListener("change", handlePriceSelection);
 
+    // Initial call to handle price selection logic (this ensures default selection on load)
     handlePriceSelection();
 
     // Add event listener for form submission to prevent the default form behavior and refresh functions
