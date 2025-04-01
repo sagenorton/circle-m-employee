@@ -1643,13 +1643,23 @@ async function calculateCost() {
     // Default to 'unit' if 'sold_by' is not available
     const unit = materialInfo.sold_by || 'unit';
 
-    // Get the selected price type from the radio buttons
-    const priceType = document.querySelector('input[name="pricing"]:checked')?.value; // either "elite" or "pro"
+    // Ensure prices are updated based on checkbox selection
+    const elitePriceCheckbox = document.getElementById("elitePrice");
+    const proPriceCheckbox = document.getElementById("proPrice");
 
+    let priceType = null;
+
+    // Check if both checkboxes exist before determining price type
+    if (elitePriceCheckbox && elitePriceCheckbox.checked) {
+        priceType = "elite_price";
+    } else if (proPriceCheckbox && proPriceCheckbox.checked) {
+        priceType = "pro_price";
+    }
+
+    // If a valid priceType exists, update locations' prices
     if (priceType) {
-        // Update locations' prices based on selected price type
         materialInfo.locations.forEach(location => {
-            location.price = location[`${priceType}_price`]; // Update price according to the selected type
+            location.price = location[priceType];
         });
     } else {
         console.error("No valid price type selected.");
