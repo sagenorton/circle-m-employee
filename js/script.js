@@ -1002,12 +1002,18 @@ function updateUnitRestrictions() {
 
 
 
+let formSubmitted = false;
+
 /* --------------------- Validate user inputs -------------------------- */
 function validateInput(tonsNeeded, dropOffAddress) {
     const addressField = document.getElementById("address");
     const tonsField = document.getElementById("tonsNeeded");
     const addressHelper = document.getElementById("address-help");
     const tonsHelper = document.getElementById("tons-help");
+
+    if (!formSubmitted) {
+        return true; // Skip validation display before form is submitted
+    }
 
     // Reset previous errors only when the form is submitted
     addressField.style.border = "";
@@ -1944,6 +1950,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (form) {
         form.addEventListener("submit", function (event) {
             event.preventDefault(); // Prevent default form submission
+            formSubmitted = true;
 
             // Get the user input values for validation
             const addressInput = document.getElementById("address").value;
