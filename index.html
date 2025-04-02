@@ -138,14 +138,8 @@
             <!-- Loader element -->
             <div id="loader" aria-live="polite">Calculating, please wait...</div>
             <div class="form-group">
-            <label>Subtotal (Price per Yard/Ton):</label>
-            <div
-                type="text" 
-                id="loadDetails"
-                name="loadDetails" 
-                class="load-details"
-                readonly>
-            </div>
+                <label>Subtotal (Price per Yard/Ton):</label>
+                <div id="subtotal" class="load-details" readonly></div>
             </div>
             <div class="form-group">
                 <label for="totalCost">Total Cost:</label>
@@ -156,6 +150,10 @@
                     readonly 
                     aria-readonly="true">
             </div>
+            <div class="form-group">
+                <label for="breakdownLog">Truck Breakdown & Journey Logs:</label>
+                <pre id="breakdownLog" class="breakdown-log" readonly></pre>
+            </div>                     
         </form>
     </div>
 
