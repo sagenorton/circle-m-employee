@@ -1786,7 +1786,10 @@ async function calculateCost() {
             let { yardLoads } = await calculateYardTruckLoads(amountNeeded, materialInfo, location);
             let distances = await calculateDistances([{ origin: location.address, destination: addressInput }]);
             let yardCosts = await computeYardCosts(yardLoads, location, distances, addressInput, materialInfo);
+            console.log(`YARD OPTION: ${location.name}, Total Cost: $${yardCosts.totalCost.toFixed(2)}`);
+            console.log(yardCosts.logOutput);
             costResults.push(yardCosts);
+
         } else {
             let pitResult = await calculatePitTruckLoads(amountNeeded, materialInfo, location, finalClosestYard, [], addressInput);
             let { pitLoads, yardLoads, totalCost } = pitResult;
@@ -1799,7 +1802,11 @@ async function calculateCost() {
                 ]);
 
                 let pitCosts = await computePitCosts(pitLoads, location, distances, addressInput, yardLoads, totalCost, materialInfo, yardLocations, amountNeeded);
-                if (pitCosts.totalCost > 0) costResults.push(pitCosts);
+                if (pitCosts.totalCost > 0) {
+                    console.log(`PIT OPTION: ${location.name}, Total Cost: $${pitCosts.totalCost.toFixed(2)}`);
+                    console.log(pitCosts.logOutput);
+                    costResults.push(pitCosts);
+                }                
             }
         }
     }
