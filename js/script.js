@@ -1825,16 +1825,18 @@ async function calculateCost() {
 
 /* --------------------- Display the results on the page -------------------------- */
 function displayResults(totalCost, detailedCosts, unit, logOutput = "") {
-    const detailSection = document.getElementById('loadDetails');
+    const detailSection = document.getElementById('subtotal');
     const totalCostElement = document.getElementById('totalCost');
+    const breakdownElement = document.getElementById('breakdownLog');
 
-    if (!detailSection || !totalCostElement) {
+    if (!detailSection || !totalCostElement || !breakdownElement) {
         console.error("ERROR: One or more display elements are missing!");
         return;
     }
 
     // Clear previous results
-    detailSection.innerHTML = ''; 
+    detailSection.innerHTML = '';
+    breakdownElement.textContent = ''; 
 
     let groupedTrucks = {};
 
@@ -1884,10 +1886,10 @@ function displayResults(totalCost, detailedCosts, unit, logOutput = "") {
     }
     totalCostElement.value = "$" + totalCost.toFixed(2);
 
-    const breakdownElement = document.getElementById('breakdownLog');
-    if (breakdownElement && typeof logOutput === "string" && logOutput.trim().length > 0) {
+    // Set breakdown log output
+    if (typeof logOutput === "string" && logOutput.trim().length > 0) {
         breakdownElement.textContent = logOutput;
-    }    
+    }
 }
 
 
