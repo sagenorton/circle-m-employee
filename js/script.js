@@ -1358,30 +1358,32 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
     });
 
     if (!suppressLogs) {
+        const header = "===================================";
+        logOutput += `YARD CALCULATION:\n`;
+            logOutput += `${header}\n`;
+    
+        // Log truck-specific details
         Object.values(groupedTrucks).forEach(truck => {
-            const header = "===================================";
             const truckTotalLoad = truck.count * truck.amount;
             const truckTrips = truck.count;
             const truckTotalJourneyTime = ((driveTime * 2 * 1.15) + 36) * truckTrips;
     
-            logOutput += `YARD CALCULATION:\n`;
-            logOutput += `${header}\n`;
             logOutput += `${truck.count} ${truck.truckName}(s) of ${truck.amount} ${materialInfo.sold_by}s at $${truck.costPerUnit.toFixed(2)} per ${materialInfo.sold_by}\n`;
             logOutput += `\n`;
             logOutput += `==> DETAILS FOR ${truck.truckName}:\n`;
             logOutput += `Total Load: ${truckTotalLoad}\n`;
             logOutput += `Total Trips: ${truckTrips}\n`;
             logOutput += `Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
-            logOutput += `\n`;
-            logOutput += `==> JOURNEY BREAKDOWN:\n`;
-            logOutput += `Yard Chosen:\n`;
-            logOutput += `${yard.name}, ${yard.address}\n`;
-            logOutput += ` ⤷ Duration to Drop Off: ${driveTime} min\n`;
-            logOutput += ` ⤷ Round Trip Duration: ${(driveTime * 2)} min\n`;
-            logOutput += `\n`;
-            logOutput += `==> BASE PRICE: $${yard.price.toFixed(2)}\n`;
-            logOutput += `${header}\n\n`;
         });
+    
+        logOutput += `==> JOURNEY BREAKDOWN:\n`;
+        logOutput += `Yard Chosen:\n`;
+        logOutput += `${yard.name}, ${yard.address}\n`;
+        logOutput += ` ⤷ Duration to Drop Off: ${driveTime} min\n`;
+        logOutput += ` ⤷ Round Trip Duration: ${(driveTime * 2)} min\n`;
+        logOutput += `\n`;
+        logOutput += `==> BASE PRICE: $${yard.price.toFixed(2)}\n`;
+        logOutput += `${header}\n\n`;
     }      
 
     return { totalCost, detailedCosts, location: yard, logOutput };
@@ -1636,13 +1638,22 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         const summaryHeader = "===================================";
         logOutput += `PIT CALCULATION:\n`;
         logOutput += `${summaryHeader}\n`;
-        logOutput += `${count} ${truckName}(s) of ${amount} ${materialInfo.sold_by}s at $${costPerUnit.toFixed(2)} per ${materialInfo.sold_by}\n`;
-        logOutput += `\n`;
-        logOutput += `==> DETAILS FOR ${truckName}:\n`;
-        logOutput += `Total Load: ${truckTotalLoad}\n`;
-        logOutput += `Total Trips: ${truckTrips}\n`;
-        logOutput += `Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
-        logOutput += `\n`;
+
+        // Log truck-specific details
+        Object.values(groupedTruckLoads).forEach(group => {
+            const { truckName, amount, count } = group;
+            const truckTotalLoad = count * amount;
+            const truckTrips = count;
+            const truckTotalJourneyTime = ((driveTimeYardToPit + driveTimePitToDrop * (truckTrips * 2 - 1) + driveTimeDropToYard) * 1.15) + (36 * truckTrips);
+        
+            logOutput += `${count} ${truckName}(s) of ${amount} ${materialInfo.sold_by}s at $${costPerUnit.toFixed(2)} per ${materialInfo.sold_by}\n`;
+            logOutput += `\n`;
+            logOutput += `==> DETAILS FOR ${truckName}:\n`;
+            logOutput += `Total Load: ${truckTotalLoad}\n`;
+            logOutput += `Total Trips: ${truckTrips}\n`;
+            logOutput += `Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
+        });
+        
         logOutput += `==> JOURNEY BREAKDOWN:\n`;
         logOutput += `Starting from:\n`;
         logOutput += `${pit.closest_yard}\n`;
