@@ -1374,6 +1374,7 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
             logOutput += `Total Load: ${truckTotalLoad}\n`;
             logOutput += `Total Trips: ${truckTrips}\n`;
             logOutput += `Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
+            logOutput += `\n`;
         });
     
         logOutput += `==> JOURNEY BREAKDOWN:\n`;
@@ -1652,6 +1653,7 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
             logOutput += `Total Load: ${truckTotalLoad}\n`;
             logOutput += `Total Trips: ${truckTrips}\n`;
             logOutput += `Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
+            logOutput += `\n`;
         });
         
         logOutput += `==> JOURNEY BREAKDOWN:\n`;
