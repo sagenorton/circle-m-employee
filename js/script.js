@@ -1342,18 +1342,6 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
         return { totalCost: Infinity, detailedCosts: [], location: yard, logOutput };
     }
 
-    if (!suppressLogs) {
-        const header = "===================================";
-        logOutput += `${header}\n`;
-        logOutput += `Yard Calculation:\n`;
-        logOutput += `Yard Chosen: ${yard.name}, ${yard.address}\n`;
-        logOutput += `Base Price: $${yard.price}\n`;
-        logOutput += `Duration to Drop Off: ${driveTime} min\n`;
-        logOutput += `Round Trip Duration: ${(driveTime * 2).toFixed(2)} min\n`;
-        logOutput += `Number of Trips: ${truckLoadInfo.length}\n`;
-        logOutput += `Total Duration: ${(truckLoadInfo.length * driveTime * 2).toFixed(2)} min\n`;
-    }
-
     // Group trucks and suppress logs if needed
     let groupedTrucks = {};
     truckLoadInfo.forEach(load => {
@@ -1371,12 +1359,26 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
 
     if (!suppressLogs) {
         Object.values(groupedTrucks).forEach(truck => {
-            logOutput += `  ${truck.count} ${truck.truckName}(s) of ${truck.amount} ${materialInfo.sold_by}s at $${truck.costPerUnit.toFixed(2)} per ${materialInfo.sold_by}\n`;
+            const header = "===================================";
+            const truckTotalLoad = truck.count * truck.amount;
+            const truckTrips = truck.count;
+            const truckTotalJourneyTime = ((driveTime * 2 * 1.15) + 36) * truckTrips;
+    
+            logOutput += `YARD CALCULATION:\n`;
+            logOutput += `${header}\n`;
+            logOutput += `${truck.count} ${truck.truckName}(s) of ${truck.amount} ${materialInfo.sold_by}s at $${truck.costPerUnit.toFixed(2)} per ${materialInfo.sold_by}\n`;
+            logOutput += `==> DETAILS FOR ${truck.truckName}:\n`;
+            logOutput += `Total Load: ${truckTotalLoad}\n`;
+            logOutput += `Total Trips: ${truckTrips}\n`;
+            logOutput += `Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
+            logOutput += `==> JOURNEY BREAKDOWN:\n`;
+            logOutput += `Yard Chosen: ${yard.name}, ${yard.address}\n`;
+            logOutput += `__Duration to Drop Off: ${driveTime} min\n`;
+            logOutput += `__Round Trip Duration: ${(driveTime * 2).toFixed(2)} min\n`;
+            logOutput += `==> BASE PRICE: $${yard.price}\n`;
+            logOutput += `${header}\n\n`;
         });
-
-        logOutput += `\nFinal Total: $${totalCost.toFixed(2)}\n`;
-        logOutput += "===================================\n";
-    }
+    }      
 
     return { totalCost, detailedCosts, location: yard, logOutput };
 }
@@ -1631,19 +1633,19 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         logOutput += `PIT CALCULATION:\n`;
         logOutput += `${summaryHeader}\n`;
         logOutput += `${count} ${truckName}(s) of ${amount} ${materialInfo.sold_by}s at $${costPerUnit.toFixed(2)} per ${materialInfo.sold_by}\n`;
-        logOutput += `==> Details for ${truckName}:\n`;
-        logOutput += `-Total Load: ${truckTotalLoad}\n`;
-        logOutput += `-Total Trips: ${truckTrips}\n`;
-        logOutput += `-Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
-        logOutput += `==> Journey Breakdown:\n`;
+        logOutput += `==> DETAILS FOR ${truckName}:\n`;
+        logOutput += `Total Load: ${truckTotalLoad}\n`;
+        logOutput += `Total Trips: ${truckTrips}\n`;
+        logOutput += `Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
+        logOutput += `==> JOURNEY BREAKDOWN:\n`;
         logOutput += `Starting from: ${pit.closest_yard}\n`;
         logOutput += `Going to Pit: ${pit.name}, ${pit.address}\n`;
-        logOutput += `--Duration/Distance: ${driveTimeYardToPit} min\n`;
+        logOutput += `__Duration/Distance: ${driveTimeYardToPit} min\n`;
         logOutput += `Drop off at: ${addressInput}\n`;
-        logOutput += `--Duration/Distance: ${driveTimePitToDrop} min\n`;
+        logOutput += `__Duration/Distance: ${driveTimePitToDrop} min\n`;
         logOutput += `Ending at: ${finalClosestYard}\n`;
-        logOutput += `--Duration/Distance: ${driveTimeDropToYard} min\n`;
-        logOutput += `==> Base Price: $${pit.price.toFixed(2)}\n`;
+        logOutput += `__Duration/Distance: ${driveTimeDropToYard} min\n`;
+        logOutput += `==> BASE PRICE: $${pit.price.toFixed(2)}\n`;
         logOutput += `${summaryHeader}\n\n`;        
 
         // Add each load to detailed costs
