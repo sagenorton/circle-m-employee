@@ -27,7 +27,7 @@
         </header>
         <form id="calcForm" novalidate>
             <div class="form-group">
-                <label for="address">Address:</label>
+                <label>Address:</label>
                 <input 
                     type="text" 
                     id="address" 
@@ -38,7 +38,7 @@
                     <span id="address-help" class="help-text" aria-live="polite" style="display: none;"></span>
             </div>
             <div class="form-group">
-                <label for="material">Material:</label>
+                <label>Material:</label>
                 <select id="material" name="material">
                     <optgroup label="Soils">
                         <option value="3_way_garden_soil" data-unit="yard">3-Way Garden Soil</option>
@@ -58,7 +58,6 @@
                         <option value="3_minus_crushed_concrete" data-unit="ton">3" Minus Crushed (Concrete)</option>
                         <option value="3_minus_structural_round" data-unit="ton">3" Minus Structural Round</option>
                         <option value="58_114_basalt_minus_gravel" data-unit="ton">5/8" & 1 1/4" Basalt Minus Gravel</option>
-                        <!-- <option value="3_minus_crushed_basalt" data-unit="ton">3" Minus Crushed Basalt</option> -->
                         <option value="58_114_granite_minus_gravel" data-unit="ton">5/8" & 1 1/4" Granite Minus Gravel</option>
                         <option value="asphalt_grindings" data-unit="ton">Asphalt Grindings</option>
                         <option value="c33_sand" data-unit="ton">C33 Sand</option>
@@ -110,7 +109,7 @@
                 
             </div>
             <div class="form-group">
-                <label for="tonsNeeded">Yards/Tons Needed:</label>
+                <label>Yards/Tons Needed:</label>
                 <input 
                     type="number" 
                     id="tonsNeeded" 
@@ -142,7 +141,7 @@
                 <div id="subtotal" class="load-details" readonly></div>
             </div>
             <div class="form-group">
-                <label for="totalCost">Total Cost:</label>
+                <label>Total Cost:</label>
                 <input 
                     type="text" 
                     id="totalCost" 
@@ -151,8 +150,8 @@
                     aria-readonly="true">
             </div>
             <div class="form-group">
-                <label for="breakdownLog">Truck Breakdown & Journey Logs:</label>
-                <pre id="breakdownLog" class="breakdown-log" readonly></pre>
+                <label>Truck Breakdown & Journey Logs:</label>
+                <pre id="breakdownLog" class="breakdownLog" readonly></pre>
             </div>                     
         </form>
     </div>
