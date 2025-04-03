@@ -1642,10 +1642,13 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
 
         // Log truck-specific details
         Object.values(groupedTruckLoads).forEach(group => {
-            const { truckName, amount, count } = group;
+            const { truckName, amount, count, rate } = group;
             const truckTotalLoad = count * amount;
             const truckTrips = count;
             const truckTotalJourneyTime = ((driveTimeYardToPit + driveTimePitToDrop * (truckTrips * 2 - 1) + driveTimeDropToYard) * 1.15) + (36 * truckTrips);
+
+            // Calculate costPerUnit for this group
+            const costPerUnit = (((truckTotalJourneyTime / 60) * rate) / truckTotalLoad) + (pit.price || 0);
         
             logOutput += `${count} ${truckName}(s) of ${amount} ${materialInfo.sold_by}s at $${costPerUnit.toFixed(2)} per ${materialInfo.sold_by}\n`;
             logOutput += `\n`;
@@ -1657,7 +1660,7 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         });
 
         // Add each load to detailed costs
-        loads.forEach(load => {
+        group.loads.forEach(load => {
             detailedCosts.push({
                 truckName: load.truckName,
                 rate: load.rate,
