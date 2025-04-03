@@ -1646,12 +1646,15 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         logOutput += `==> JOURNEY BREAKDOWN:\n`;
         logOutput += `Starting from:\n`;
         logOutput += `${pit.closest_yard}\n`;
+        logOutput += `\n`;
         logOutput += `Going to Pit:\n`;
         logOutput += `${pit.name}, ${pit.address}\n`;
         logOutput += ` ⤷ Duration/Distance: ${driveTimeYardToPit} min\n`;
+        logOutput += `\n`;
         logOutput += `Drop off at:\n`;
         logOutput += `${addressInput}\n`;
         logOutput += ` ⤷ Duration/Distance: ${driveTimePitToDrop} min\n`;
+        logOutput += `\n`;
         logOutput += `Ending at: ${finalClosestYard}\n`;
         logOutput += ` ⤷ Duration/Distance: ${driveTimeDropToYard} min\n`;
         logOutput += `\n`;
