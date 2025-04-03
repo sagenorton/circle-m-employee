@@ -1619,46 +1619,34 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
     for (const key in groupedTruckLoads) {
         const group = groupedTruckLoads[key];
         const { truckName, amount, rate, count, loads } = group;
-
+    
         const truckTrips = count;
         const truckTotalLoad = count * amount;
-
+    
         let truckTotalDriveTime = driveTimeYardToPit + (driveTimePitToDrop * (truckTrips * 2 - 1)) + driveTimeDropToYard;
         let truckAdjustedTravelTime = truckTotalDriveTime * 1.15;
         let truckTotalJourneyTime = truckAdjustedTravelTime + (36 * truckTrips);
-
+    
         let costPerUnit = (((truckTotalJourneyTime / 60) * rate) / truckTotalLoad) + (pit.price || 0);
-
+    
         if (isNaN(costPerUnit) || !isFinite(costPerUnit)) {
             const errMsg = `ERROR: Invalid costPerUnit for ${truckName}. Defaulting to $0.`;
             console.error(errMsg);
-            logOutput += errMsg + "\n";
             costPerUnit = 0;
         }
-
+    
         let costPerLoad = costPerUnit * amount;
         let groupCost = costPerLoad * count;
         totalCost += groupCost;
-
-        // Log truck-specific details
-        Object.values(groupedTruckLoads).forEach(group => {
-            const { truckName, amount, count, rate } = group;
-            const truckTotalLoad = count * amount;
-            const truckTrips = count;
-            const truckTotalJourneyTime = ((driveTimeYardToPit + driveTimePitToDrop * (truckTrips * 2 - 1) + driveTimeDropToYard) * 1.15) + (36 * truckTrips);
-
-            // Calculate costPerUnit for this group
-            const costPerUnit = (((truckTotalJourneyTime / 60) * rate) / truckTotalLoad) + (pit.price || 0);
-        
-            logOutput += `${count} ${truckName}(s) of ${amount} ${materialInfo.sold_by}s at $${costPerUnit.toFixed(2)} per ${materialInfo.sold_by}\n`;
-            logOutput += `\n`;
-            logOutput += `==> DETAILS FOR ${truckName}:\n`;
-            logOutput += `Total Load: ${truckTotalLoad}\n`;
-            logOutput += `Total Trips: ${truckTrips}\n`;
-            logOutput += `Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
-            logOutput += `\n`;
-        });
-
+    
+        logOutput += `${count} ${truckName}(s) of ${amount} ${materialInfo.sold_by}s at $${costPerUnit.toFixed(2)} per ${materialInfo.sold_by}\n`;
+        logOutput += `\n`;
+        logOutput += `==> DETAILS FOR ${truckName}:\n`;
+        logOutput += `Total Load: ${truckTotalLoad}\n`;
+        logOutput += `Total Trips: ${truckTrips}\n`;
+        logOutput += `Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
+        logOutput += `\n`;
+    
         // Add each load to detailed costs
         group.loads.forEach(load => {
             detailedCosts.push({
@@ -1669,7 +1657,7 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
                 costPerLoad: costPerUnit * load.amount
             });
         });
-    }
+    }    
 
         logOutput += `==> JOURNEY BREAKDOWN:\n`;
         logOutput += `Starting from:\n`;
