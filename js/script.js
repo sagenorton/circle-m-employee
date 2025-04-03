@@ -1612,6 +1612,10 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         groupedTruckLoads[key].loads.push(load);
     });
 
+    const summaryHeader = "===================================";
+    logOutput += `PIT CALCULATION:\n`;
+    logOutput += `${summaryHeader}\n`;
+
     for (const key in groupedTruckLoads) {
         const group = groupedTruckLoads[key];
         const { truckName, amount, rate, count, loads } = group;
@@ -1636,10 +1640,6 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         let groupCost = costPerLoad * count;
         totalCost += groupCost;
 
-        const summaryHeader = "===================================";
-        logOutput += `PIT CALCULATION:\n`;
-        logOutput += `${summaryHeader}\n`;
-
         // Log truck-specific details
         Object.values(groupedTruckLoads).forEach(group => {
             const { truckName, amount, count } = group;
@@ -1655,7 +1655,19 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
             logOutput += `Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
             logOutput += `\n`;
         });
-        
+
+        // Add each load to detailed costs
+        loads.forEach(load => {
+            detailedCosts.push({
+                truckName: load.truckName,
+                rate: load.rate,
+                amount: load.amount,
+                costPerUnit,
+                costPerLoad: costPerUnit * load.amount
+            });
+        });
+    }
+
         logOutput += `==> JOURNEY BREAKDOWN:\n`;
         logOutput += `Starting from:\n`;
         logOutput += `${pit.closest_yard}\n`;
@@ -1673,18 +1685,6 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         logOutput += `\n`;
         logOutput += `==> BASE PRICE: $${pit.price.toFixed(2)}\n`;
         logOutput += `${summaryHeader}\n\n`;
-
-        // Add each load to detailed costs
-        loads.forEach(load => {
-            detailedCosts.push({
-                truckName: load.truckName,
-                rate: load.rate,
-                amount: load.amount,
-                costPerUnit,
-                costPerLoad: costPerUnit * load.amount
-            });
-        });
-    }
 
     let yardCostData = null;
     if (yardLoads.length > 0) {
