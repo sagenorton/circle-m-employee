@@ -1627,6 +1627,25 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         let groupCost = costPerLoad * count;
         totalCost += groupCost;
 
+        const summaryHeader = "===================================";
+        logOutput += `<strong>Pit Calculation for ${truckName}:</strong>\n`;
+        logOutput += `${summaryHeader}\n`;
+        logOutput += `${count} ${truckName}(s) of ${amount} ${materialInfo.sold_by}s at $${costPerUnit.toFixed(2)} per ${materialInfo.sold_by}\n`;
+        logOutput += `<strong>Details for ${truckName}:</strong>\n`;
+        logOutput += `- Total Load: ${truckTotalLoad}\n`;
+        logOutput += `- Total Trips: ${truckTrips}\n`;
+        logOutput += `- Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
+        logOutput += `<strong>Journey Breakdown:</strong>\n`;
+        logOutput += `- Starting from: ${pit.closest_yard}\n`;
+        logOutput += `- Going to Pit: ${pit.name}, ${pit.address}\n`;
+        logOutput += `-- Duration/Distance: ${driveTimeYardToPit} min\n`;
+        logOutput += `- Drop off at: ${addressInput}\n`;
+        logOutput += `-- Duration/Distance: ${driveTimePitToDrop} min\n`;
+        logOutput += `- Ending at: ${finalClosestYard}\n`;
+        logOutput += `-- Duration/Distance: ${driveTimeDropToYard} min\n`;
+        logOutput += `<strong>Base Price:</strong> $${pit.price.toFixed(2)}\n`;
+        logOutput += `${summaryHeader}\n\n`;        
+
         // Add each load to detailed costs
         loads.forEach(load => {
             detailedCosts.push({
@@ -1664,24 +1683,6 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
             logOutput += "\n" + yardCostData.logOutput;
         }
     }
-
-    const summaryHeader = "===================================";
-    logOutput += "<strong>Pit Calculation:\n</strong>";
-    logOutput += `${count} ${truckName}(s) of ${amount} ${materialInfo.sold_by}s at $${costPerUnit.toFixed(2)} per ${materialInfo.sold_by}\n`;
-    logOutput += `<strong>Details for ${truckName}:\n</strong>`;
-    logOutput += `-Total Load: ${truckTotalLoad}\n`;
-    logOutput += `-Total Trips: ${truckTrips}\n`;
-    logOutput += `-Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
-    logOutput += `<strong>Journey Breakdown:\n</strong>`;
-    logOutput += `-Starting from: ${pit.closest_yard}\n`;
-    logOutput += `-Going to Pit: ${pit.name}, ${pit.address}\n`;
-    logOutput += `--Duration/Distance: ${driveTimeYardToPit} min\n`;
-    logOutput += `-Drop off at: ${addressInput}\n`;
-    logOutput += `--Duration/Distance: ${driveTimePitToDrop} min\n`;
-    logOutput += `-Ending at: ${finalClosestYard}\n`;
-    logOutput += `--Duration/Distance: ${driveTimeDropToYard} min\n`;
-    logOutput += `<strong>Base Price:</strong> $${pit.price.toFixed(2)}\n`;
-    logOutput += `${summaryHeader}\n`;
 
     console.log(logOutput); // preserve console output
 
