@@ -120,6 +120,8 @@ form button {
     overflow-wrap: break-word;
     overflow-x: auto;
     max-width: 100%; 
+    text-indent: -1em;
+    padding-left: 1em; 
 }
 
 .pricing-radio-buttons {
