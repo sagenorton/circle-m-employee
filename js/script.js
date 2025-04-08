@@ -1360,6 +1360,8 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
         groupedTrucks[truckGroupKey].count++;
     });
 
+    let totalDistance = distances.reduce((sum, d) => sum + parseFloat(d.distance.replace(/[^\d.]/g, '')), 0);
+
     if (!suppressLogs) {
         const header = "===================================";
         logOutput += `YARD CALCULATION:\n`;
@@ -1386,7 +1388,7 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
         logOutput += ` ⤷ Round Trip Duration: ${(driveTime * 2)} min\n`;
         logOutput += `\n`;
         logOutput += `TOTAL JOURNEY TIME: ${(driveTime * 2)} min\n`;
-        logOutput += `TOTAL DISTANCE: ${totalDistance} miles\n`;
+        logOutput += `TOTAL DISTANCE: ${totalDistance.toFixed(2)} miles\n`;
         logOutput += `\n`;
         logOutput += `==> BASE PRICE: $${yard.price.toFixed(2)}\n`;
         logOutput += `${header}\n\n`;
@@ -1663,6 +1665,8 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         });
     }    
 
+    let totalDistance = distances.reduce((sum, d) => sum + parseFloat(d.distance.replace(/[^\d.]/g, '')), 0);
+
     logOutput += `==> JOURNEY BREAKDOWN:\n`;
     logOutput += `Starting from:\n`;
     logOutput += `${pit.closest_yard}\n`;
@@ -1679,7 +1683,7 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
     logOutput += ` ⤷ Duration: ${driveTimeDropToYard} min | Distance: ${distanceDropToYard} miles\n`;
     logOutput += `\n`;
     logOutput += `TOTAL JOURNEY TIME: ${totalJourneyTime} min\n`;
-    logOutput += `TOTAL DISTANCE: ${totalDistance} miles\n`;
+    logOutput += `TOTAL DISTANCE: ${totalDistance.toFixed(2)} miles\n`;
     logOutput += `\n`;
     logOutput += `==> BASE PRICE: $${pit.price.toFixed(2)}\n`;
     logOutput += `${summaryHeader}\n\n`;
