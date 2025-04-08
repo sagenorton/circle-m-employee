@@ -1607,7 +1607,7 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
     let groupedTruckLoads = {}; // Keyed by truckName-amount-rate
 
     pitLoads.forEach(load => {
-        const key = `${load.truckName}-${load.amount}-${load.rate}`;
+        const key = `${load.truckName}-${load.max}-${load.rate}`;
         if (!groupedTruckLoads[key]) {
             groupedTruckLoads[key] = {
                 truckName: load.truckName,
