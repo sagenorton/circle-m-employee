@@ -1667,6 +1667,39 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
 
     let totalDistance = distances.reduce((sum, d) => sum + parseFloat(d.distance.replace(/[^\d.]/g, '')), 0);
 
+    // Find the distance from the yard to the pit
+    let distanceYardToPitEntry = distances.find(d => 
+    d.from.trim() === pit.closest_yard.trim() && d.to.trim() === pit.address.trim()
+    );
+    let distanceYardToPit = distanceYardToPitEntry ? parseFloat(distanceYardToPitEntry.distance.replace(/[^\d.]/g, '')) : 0;
+
+    // Log an error if the distance is not found
+    if (!distanceYardToPitEntry) {
+    console.error(`ERROR: Could not find distance from yard (${pit.closest_yard}) to pit (${pit.address}).`);
+    }
+
+    // Find the distance from the pit to the drop-off location
+    let distancePitToDropEntry = distances.find(d => 
+    d.from.trim() === pit.address.trim() && d.to.trim() === addressInput.trim()
+    );
+    let distancePitToDrop = distancePitToDropEntry ? parseFloat(distancePitToDropEntry.distance.replace(/[^\d.]/g, '')) : 0;
+
+    // Log an error if the distance is not found
+    if (!distancePitToDropEntry) {
+    console.error(`ERROR: Could not find distance from pit (${pit.address}) to drop-off (${addressInput}).`);
+    }
+
+    // Find the distance from the drop-off location to the yard
+    let distanceDropToYardEntry = distances.find(d => 
+    d.from.trim() === addressInput.trim() && d.to.trim() === finalClosestYard.trim()
+    );
+    let distanceDropToYard = distanceDropToYardEntry ? parseFloat(distanceDropToYardEntry.distance.replace(/[^\d.]/g, '')) : 0;
+
+    // Log an error if the distance is not found
+    if (!distanceDropToYardEntry) {
+    console.error(`ERROR: Could not find distance from drop-off (${addressInput}) to yard (${finalClosestYard}).`);
+    }
+
     logOutput += `==> JOURNEY BREAKDOWN:\n`;
     logOutput += `Starting from:\n`;
     logOutput += `${pit.closest_yard}\n`;
