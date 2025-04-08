@@ -1366,32 +1366,31 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
         const header = "===================================";
         logOutput += `YARD CALCULATION:\n`;
             logOutput += `${header}\n`;
-    
-        // Log truck-specific details
-        Object.values(groupedTrucks).forEach(truck => {
-            const truckTotalLoad = truck.count * truck.amount;
-            const truckTrips = truck.count;
-            const truckTotalJourneyTime = ((driveTime * 2 * 1.15) + 36) * truckTrips;
-    
-            logOutput += `${truck.count} ${truck.truckName}(s) of ${truck.amount} ${materialInfo.sold_by}s at $${truck.costPerUnit.toFixed(2)} per ${materialInfo.sold_by}\n`;
+            
+            // Log truck-specific details
+            Object.values(groupedTrucks).forEach(truck => {
+                const truckTotalLoad = truck.count * truck.amount;
+                const truckTrips = truck.count;
+            
+                logOutput += `${truck.count} ${truck.truckName}(s) of ${truck.amount} ${materialInfo.sold_by}s at $${truck.costPerUnit.toFixed(2)} per ${materialInfo.sold_by}\n`;
+                logOutput += `\n`;
+                logOutput += `==> DETAILS FOR ${truck.truckName}:\n`;
+                logOutput += `Total Load: ${truckTotalLoad}\n`;
+                logOutput += `Total Trips: ${truckTrips}\n`;
+                logOutput += `\n`;
+            });
+            
+            logOutput += `==> JOURNEY BREAKDOWN:\n`;
+            logOutput += `Yard Chosen:\n`;
+            logOutput += `${yard.name}, ${yard.address}\n`;
+            logOutput += ` ⤷ Duration to Drop Off: ${driveTime} min\n`;
+            logOutput += ` ⤷ Round Trip Duration: ${(driveTime * 2)} min\n`;
             logOutput += `\n`;
-            logOutput += `==> DETAILS FOR ${truck.truckName}:\n`;
-            logOutput += `Total Load: ${truckTotalLoad}\n`;
-            logOutput += `Total Trips: ${truckTrips}\n`;
+            logOutput += `TOTAL JOURNEY TIME: ${(driveTime * 2) * Object.values(groupedTrucks).reduce((sum, truck) => sum + truck.count, 0)} min\n`;
+            logOutput += `TOTAL DISTANCE: ${(totalDistance * Object.values(groupedTrucks).reduce((sum, truck) => sum + truck.count, 0)).toFixed(2)} miles\n`;
             logOutput += `\n`;
-        });
-    
-        logOutput += `==> JOURNEY BREAKDOWN:\n`;
-        logOutput += `Yard Chosen:\n`;
-        logOutput += `${yard.name}, ${yard.address}\n`;
-        logOutput += ` ⤷ Duration to Drop Off: ${driveTime} min\n`;
-        logOutput += ` ⤷ Round Trip Duration: ${(driveTime * 2)} min\n`;
-        logOutput += `\n`;
-        logOutput += `TOTAL JOURNEY TIME: ${(driveTime * 2)} min\n`;
-        logOutput += `TOTAL DISTANCE: ${totalDistance.toFixed(2)} miles\n`;
-        logOutput += `\n`;
-        logOutput += `==> BASE PRICE: $${yard.price.toFixed(2)}\n`;
-        logOutput += `${header}\n\n`;
+            logOutput += `==> BASE PRICE: $${yard.price.toFixed(2)}\n`;
+            logOutput += `${header}\n\n`;
     }      
 
     return { totalCost, detailedCosts, location: yard, logOutput };
@@ -1665,8 +1664,6 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         });
     }    
 
-    let totalDistance = distances.reduce((sum, d) => sum + parseFloat(d.distance.replace(/[^\d.]/g, '')), 0);
-
     // Find the distance from the yard to the pit
     let distanceYardToPitEntry = distances.find(d => 
     d.from.trim() === pit.closest_yard.trim() && d.to.trim() === pit.address.trim()
@@ -1715,8 +1712,14 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
     logOutput += `Ending at: ${finalClosestYard}\n`;
     logOutput += ` ⤷ Duration: ${driveTimeDropToYard} min | Distance: ${distanceDropToYard} miles\n`;
     logOutput += `\n`;
-    logOutput += `TOTAL JOURNEY TIME: ${totalJourneyTime} min\n`;
-    logOutput += `TOTAL DISTANCE: ${totalDistance.toFixed(2)} miles\n`;
+
+    // Calculate total journey time and distance for all trips
+    const totalTrips = Object.values(groupedTruckLoads).reduce((sum, group) => sum + group.count, 0);
+    const totalJourneyTime = totalTrips * (driveTimeYardToPit + (driveTimePitToDrop * 2) + driveTimeDropToYard) * 1.15 + (36 * totalTrips);
+    const totalJourneyDistance = totalTrips * (distanceYardToPit + (distancePitToDrop * 2) + distanceDropToYard);
+
+    logOutput += `TOTAL JOURNEY TIME: ${Math.ceil(totalJourneyTime)} min\n`;
+    logOutput += `TOTAL DISTANCE: ${totalJourneyDistance.toFixed(2)} miles\n`;
     logOutput += `\n`;
     logOutput += `==> BASE PRICE: $${pit.price.toFixed(2)}\n`;
     logOutput += `${summaryHeader}\n\n`;
