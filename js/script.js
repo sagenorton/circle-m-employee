@@ -1383,8 +1383,11 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
             logOutput += `==> JOURNEY BREAKDOWN:\n`;
             logOutput += `Yard Chosen:\n`;
             logOutput += `${yard.name}, ${yard.address}\n`;
-            logOutput += ` ⤷ Duration to Drop Off: ${driveTime} min | Distance: ${totalDistance.toFixed(2)} miles\n`;
-            logOutput += ` ⤷ Round Trip Duration: ${(driveTime * 2)} min | Distance: ${(totalDistance * 2).toFixed(2)} miles\n`;
+            logOutput += ` ⤷ Duration to Drop Off: ${driveTime} min\n`;
+            logOutput += ` ⤷ Distance to Drop Off: ${totalDistance.toFixed(2)} miles\n`;
+            logOutput += `\n`;
+            logOutput += ` ⤷ Round Trip Duration: ${(driveTime * 2)} min\n`;
+            logOutput += ` ⤷ Round Trip Distance: ${(totalDistance * 2).toFixed(2)} miles\n`;
             logOutput += `\n`;
             logOutput += `TOTAL JOURNEY TIME: ${(driveTime * 2) * Object.values(groupedTrucks).reduce((sum, truck) => sum + truck.count, 0)} min\n`;
             logOutput += `TOTAL DISTANCE: ${(totalDistance * Object.values(groupedTrucks).reduce((sum, truck) => sum + truck.count, 0)).toFixed(2)} miles\n`;
@@ -1688,13 +1691,15 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
 
     // Find the distance from the drop-off location to the yard
     let distanceDropToYardEntry = distances.find(d => 
-    d.from.trim() === addressInput.trim() && d.to.trim() === finalClosestYard.trim()
+        d.from.trim().toLowerCase() === addressInput.trim().toLowerCase() &&
+        d.to.trim().toLowerCase() === finalClosestYard.trim().toLowerCase()
     );
     let distanceDropToYard = distanceDropToYardEntry ? parseFloat(distanceDropToYardEntry.distance.replace(/[^\d.]/g, '')) : 0;
 
     // Log an error if the distance is not found
     if (!distanceDropToYardEntry) {
-    console.error(`ERROR: Could not find distance from drop-off (${addressInput}) to yard (${finalClosestYard}).`);
+        console.error(`ERROR: Could not find distance from drop-off (${addressInput}) to yard (${finalClosestYard}).`);
+        console.log("Available Distances:", distances);
     }
 
     logOutput += `==> JOURNEY BREAKDOWN:\n`;
@@ -1703,14 +1708,17 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
     logOutput += `\n`;
     logOutput += `Going to Pit:\n`;
     logOutput += `${pit.name}, ${pit.address}\n`;
-    logOutput += ` ⤷ Duration: ${driveTimeYardToPit} min | Distance: ${distanceYardToPit} miles\n`;
+    logOutput += ` ⤷ Duration: ${driveTimeYardToPit} min\n`;
+    logOutput += ` ⤷ Distance: ${distanceYardToPit} miles\n`;
     logOutput += `\n`;
     logOutput += `Drop off at:\n`;
     logOutput += `${addressInput}\n`;
-    logOutput += ` ⤷ Duration: ${driveTimePitToDrop} min | Distance: ${distancePitToDrop} miles\n`;
+    logOutput += ` ⤷ Duration: ${driveTimePitToDrop} min\n`;
+    logOutput += ` ⤷ Distance: ${distancePitToDrop} miles\n`;
     logOutput += `\n`;
     logOutput += `Ending at: ${finalClosestYard}\n`;
-    logOutput += ` ⤷ Duration: ${driveTimeDropToYard} min | Distance: ${distanceDropToYard} miles\n`;
+    logOutput += ` ⤷ Duration: ${driveTimeDropToYard} min\n`;
+    logOutput += ` ⤷ Distance: ${distanceDropToYard} miles\n`;
     logOutput += `\n`;
 
     // Calculate total journey time and distance for all trips
