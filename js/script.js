@@ -1383,8 +1383,8 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
             logOutput += `==> JOURNEY BREAKDOWN:\n`;
             logOutput += `Yard Chosen:\n`;
             logOutput += `${yard.name}, ${yard.address}\n`;
-            logOutput += ` ⤷ Duration to Drop Off: ${driveTime} min\n`;
-            logOutput += ` ⤷ Round Trip Duration: ${(driveTime * 2)} min\n`;
+            logOutput += ` ⤷ Duration to Drop Off: ${driveTime} min | Distance: ${totalDistance.toFixed(2)} miles\n`;
+            logOutput += ` ⤷ Round Trip Duration: ${(driveTime * 2)} min | Distance: ${(totalDistance * 2).toFixed(2)} miles\n`;
             logOutput += `\n`;
             logOutput += `TOTAL JOURNEY TIME: ${(driveTime * 2) * Object.values(groupedTrucks).reduce((sum, truck) => sum + truck.count, 0)} min\n`;
             logOutput += `TOTAL DISTANCE: ${(totalDistance * Object.values(groupedTrucks).reduce((sum, truck) => sum + truck.count, 0)).toFixed(2)} miles\n`;
