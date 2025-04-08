@@ -695,12 +695,15 @@ const materialData = {
     "aged_dark_fines": {
         "sold_by": "yard",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 32.50, "pro_price": 35.50, "trucks": ["truck_A"] },
-            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 33.00, "pro_price": 36.50, "trucks": ["truck_A"] },
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 32.50, "pro_price": 35.50, "trucks": ["truck_A", "truck_C"] },
+            { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 33.00, "pro_price": 36.50, "trucks": ["truck_A", "truck_C"] },
             { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 24.00, "pro_price": 27.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 15, "rate": 140}
+        ],
+        "truck_C": [
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
         ],
         "truck_D": [
             {"name": "Semi Truck", "min": 70, "max": 70, "rate": 185}
@@ -1373,7 +1376,6 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
             logOutput += `==> DETAILS FOR ${truck.truckName}:\n`;
             logOutput += `Total Load: ${truckTotalLoad}\n`;
             logOutput += `Total Trips: ${truckTrips}\n`;
-            logOutput += `Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
             logOutput += `\n`;
         });
     
@@ -1382,6 +1384,9 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
         logOutput += `${yard.name}, ${yard.address}\n`;
         logOutput += ` ⤷ Duration to Drop Off: ${driveTime} min\n`;
         logOutput += ` ⤷ Round Trip Duration: ${(driveTime * 2)} min\n`;
+        logOutput += `\n`;
+        logOutput += `TOTAL JOURNEY TIME: ${(driveTime * 2)} min\n`;
+        logOutput += `TOTAL DISTANCE: ${totalDistance} miles\n`;
         logOutput += `\n`;
         logOutput += `==> BASE PRICE: $${yard.price.toFixed(2)}\n`;
         logOutput += `${header}\n\n`;
@@ -1644,7 +1649,6 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         logOutput += `==> DETAILS FOR ${truckName}:\n`;
         logOutput += `Total Load: ${truckTotalLoad}\n`;
         logOutput += `Total Trips: ${truckTrips}\n`;
-        logOutput += `Total Journey Time: ${truckTotalJourneyTime.toFixed(2)} minutes\n`;
         logOutput += `\n`;
     
         // Add each load to detailed costs
@@ -1659,23 +1663,26 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         });
     }    
 
-        logOutput += `==> JOURNEY BREAKDOWN:\n`;
-        logOutput += `Starting from:\n`;
-        logOutput += `${pit.closest_yard}\n`;
-        logOutput += `\n`;
-        logOutput += `Going to Pit:\n`;
-        logOutput += `${pit.name}, ${pit.address}\n`;
-        logOutput += ` ⤷ Duration/Distance: ${driveTimeYardToPit} min\n`;
-        logOutput += `\n`;
-        logOutput += `Drop off at:\n`;
-        logOutput += `${addressInput}\n`;
-        logOutput += ` ⤷ Duration/Distance: ${driveTimePitToDrop} min\n`;
-        logOutput += `\n`;
-        logOutput += `Ending at: ${finalClosestYard}\n`;
-        logOutput += ` ⤷ Duration/Distance: ${driveTimeDropToYard} min\n`;
-        logOutput += `\n`;
-        logOutput += `==> BASE PRICE: $${pit.price.toFixed(2)}\n`;
-        logOutput += `${summaryHeader}\n\n`;
+    logOutput += `==> JOURNEY BREAKDOWN:\n`;
+    logOutput += `Starting from:\n`;
+    logOutput += `${pit.closest_yard}\n`;
+    logOutput += `\n`;
+    logOutput += `Going to Pit:\n`;
+    logOutput += `${pit.name}, ${pit.address}\n`;
+    logOutput += ` ⤷ Duration: ${driveTimeYardToPit} min | Distance: ${distanceYardToPit} miles\n`;
+    logOutput += `\n`;
+    logOutput += `Drop off at:\n`;
+    logOutput += `${addressInput}\n`;
+    logOutput += ` ⤷ Duration: ${driveTimePitToDrop} min | Distance: ${distancePitToDrop} miles\n`;
+    logOutput += `\n`;
+    logOutput += `Ending at: ${finalClosestYard}\n`;
+    logOutput += ` ⤷ Duration: ${driveTimeDropToYard} min | Distance: ${distanceDropToYard} miles\n`;
+    logOutput += `\n`;
+    logOutput += `TOTAL JOURNEY TIME: ${totalJourneyTime} min\n`;
+    logOutput += `TOTAL DISTANCE: ${totalDistance} miles\n`;
+    logOutput += `\n`;
+    logOutput += `==> BASE PRICE: $${pit.price.toFixed(2)}\n`;
+    logOutput += `${summaryHeader}\n\n`;
 
     let yardCostData = null;
     if (yardLoads.length > 0) {
@@ -1968,23 +1975,23 @@ document.addEventListener("DOMContentLoaded", () => {
             if (elitePriceRadio.checked && proPriceRadio.checked) {
                 proPriceRadio.checked = false;
             }
-    
+
             if (!elitePriceRadio.checked && !proPriceRadio.checked) {
                 elitePriceRadio.checked = true;
             }
-    
+
             updateCostBasedOnPrice();
-    
+
             if (shouldRecalculate) {
                 const address = document.getElementById("address")?.value || "";
                 const tons = parseFloat(document.getElementById("tonsNeeded")?.value || 0);
-    
+
                 if (address && !isNaN(tons) && tons > 0) {
                     calculateCost();
                 }
             }
         }
-    }    
+    }
 
     // Add event listeners for radio button selection with conditional cost calculation
     if (elitePriceRadio) {
@@ -2000,6 +2007,21 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCostBasedOnPrice();
     }
 
+    // 🔹 Add pricing border color change logic here
+    const calculatorBox = document.querySelector(".calculator");
+    if (elitePriceRadio && proPriceRadio && calculatorBox) {
+        function updateBorderColor() {
+            if (elitePriceRadio.checked) {
+                calculatorBox.style.borderColor = "#4CAF50"; // Green
+            } else if (proPriceRadio.checked) {
+                calculatorBox.style.borderColor = "crimson"; // Crimson
+            }
+        }
+
+        elitePriceRadio.addEventListener("change", updateBorderColor);
+        proPriceRadio.addEventListener("change", updateBorderColor);
+        updateBorderColor(); // Set initial border color
+    }
 
     // Add event listener for form submission to prevent the default form behavior and refresh functions
     const form = document.getElementById("calcForm");
