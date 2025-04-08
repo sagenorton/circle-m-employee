@@ -328,7 +328,7 @@ const materialData = {
     "58_114_granite_minus_gravel": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 27.50, "pro_price": 22.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 20.50, "pro_price": 22.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 20.00, "pro_price": 24.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
             { "name": "JMAC PIT", "address": "47.728763, -117.034429", "elite_price": 11.25, "pro_price": 12.38, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] },
             { "name": "CDA PIT", "address": "47.716832, -117.035684", "elite_price": 13.50, "pro_price": 14.85, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
