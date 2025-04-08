@@ -1692,14 +1692,29 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
     // Find the distance from the drop-off location to the yard
     let distanceDropToYardEntry = distances.find(d => 
         d.from.trim().toLowerCase() === addressInput.trim().toLowerCase() &&
-        d.to.trim().toLowerCase() === finalClosestYard.trim().toLowerCase()
+        d.to.trim().toLowerCase() === yardLocations[finalClosestYard].trim().toLowerCase()
     );
-    let distanceDropToYard = distanceDropToYardEntry ? parseFloat(distanceDropToYardEntry.distance.replace(/[^\d.]/g, '')) : 0;
-
-    // Log an error if the distance is not found
+    
     if (!distanceDropToYardEntry) {
-        console.error(`ERROR: Could not find distance from drop-off (${addressInput}) to yard (${finalClosestYard}).`);
-        console.log("Available Distances:", distances);
+        console.warn(`Distance from drop-off (${addressInput}) to yard (${finalClosestYard}) not found. Calculating...`);
+        const newDistances = await calculateDistances([
+            { origin: addressInput, destination: yardLocations[finalClosestYard] }
+        ]);
+        distances = distances.concat(newDistances);
+    
+        // Recheck for the distance after recalculating
+        distanceDropToYardEntry = distances.find(d => 
+            d.from.trim().toLowerCase() === addressInput.trim().toLowerCase() &&
+            d.to.trim().toLowerCase() === yardLocations[finalClosestYard].trim().toLowerCase()
+        );
+    }
+    
+    let distanceDropToYard = distanceDropToYardEntry ? parseFloat(distanceDropToYardEntry.distance.replace(/[^\d.]/g, '')) : 0;
+    
+    // Log an error if the distance is still not found
+    if (!distanceDropToYardEntry) {
+        console.error(`ERROR: Could not find or calculate distance from drop-off (${addressInput}) to yard (${finalClosestYard}).`);
+        console.log("Available Distances:", distances.map(d => `From: ${d.from}, To: ${d.to}`));
     }
 
     logOutput += `==> JOURNEY BREAKDOWN:\n`;
