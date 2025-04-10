@@ -1,5 +1,5 @@
+// Dynamically Load Google Maps API
 function loadGoogleMapsApi() {
-    // Check if Google Maps API is already loaded
     if (window.google && window.google.maps) {
         console.warn("Google Maps API is already loaded.");
         return;
@@ -17,27 +17,23 @@ function loadGoogleMapsApi() {
         return;
     }
 
-    // Create and append the script asynchronously
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap&loading=async`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&callback=initMap`;
     script.async = true;
     script.defer = true;
-    script.onload = () => console.log("Google Maps API successfully loaded.");
+    script.onload = () => console.log("Google Maps API script appended.");
     document.head.appendChild(script);
 }
 
-
-
-/* --------------------- Initialize Google Places Autocomplete -------------------------- */
+// Autocomplete Setup
 function initializeAutocomplete() {
     const addressInput = document.getElementById("address");
 
     if (addressInput) {
         const autocomplete = new google.maps.places.Autocomplete(addressInput, {
-            types: ["geocode"]
+            types: ["geocode"],
         });
 
-        // Track if the user has interacted with autocomplete
         let userInteracted = false;
 
         addressInput.addEventListener("keydown", () => {
@@ -47,9 +43,8 @@ function initializeAutocomplete() {
         autocomplete.addListener("place_changed", function () {
             const place = autocomplete.getPlace();
 
-            // Only show error if the user interacted and no geometry is available
             if (userInteracted && !place.geometry) {
-                console.error("No details available for input: " + addressInput.value);
+                console.error("No geometry available for input: " + addressInput.value);
                 const addressHelper = document.getElementById("address-help");
                 if (addressHelper) {
                     addressHelper.textContent = "Please select a valid address from the suggestions.";
@@ -70,11 +65,53 @@ function initializeAutocomplete() {
     }
 }
 
-// Initialize Google Maps API and Autocomplete
+// Main Google Maps API Callback (triggered via `callback=initMap`)
 window.initMap = function () {
     console.log("Google Maps API loaded successfully.");
-    initializeAutocomplete(); // Ensure autocomplete is initialized when Maps API is ready
+
+    const defaultCenter = { lat: 47.6588, lng: -117.4260 }; // Spokane area
+
+    // Pit Map
+    pitMap = new google.maps.Map(document.getElementById("pitMap"), {
+        zoom: 11,
+        center: defaultCenter,
+        mapTypeControl: false,
+    });
+
+    // Yard Map
+    yardMap = new google.maps.Map(document.getElementById("yardMap"), {
+        zoom: 11,
+        center: defaultCenter,
+        mapTypeControl: false,
+    });
+
+    initializeDirectionsServices();
+    initializeAutocomplete();
+
+    console.log("Maps and autocomplete initialized.");
 };
+
+// Direction Services Initialization
+let pitMap, yardMap;
+let pitDirectionsRenderer, yardDirectionsRenderer;
+let directionsService;
+
+function initializeDirectionsServices() {
+    directionsService = new google.maps.DirectionsService();
+
+    pitDirectionsRenderer = new google.maps.DirectionsRenderer({
+        map: pitMap,
+        suppressMarkers: false,
+    });
+
+    yardDirectionsRenderer = new google.maps.DirectionsRenderer({
+        map: yardMap,
+        suppressMarkers: false,
+    });
+
+    console.log("Direction services initialized.");
+}
+
 
 
 
@@ -328,7 +365,7 @@ const materialData = {
     "58_114_granite_minus_gravel": {
         "sold_by": "ton",
         "locations": [
-            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 20.50, "pro_price": 22.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
+            { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 20.50, "pro_price": 27.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 20.00, "pro_price": 24.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
             { "name": "JMAC PIT", "address": "47.728763, -117.034429", "elite_price": 11.25, "pro_price": 12.38, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] },
             { "name": "CDA PIT", "address": "47.716832, -117.035684", "elite_price": 13.50, "pro_price": 14.85, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
@@ -1047,7 +1084,7 @@ function validateInput(tonsNeeded, dropOffAddress) {
     if (isNaN(tonsNeeded) || tonsNeeded < min ) {
         tonsField.style.border = "2px solid red";
         tonsHelper.style.display = "block";
-        tonsHelper.textContent = `Please enter a value of ${min} or more.`;
+        tonsHelper.textContent = `Please enter a value of 3 or more.`;
         return false;
     }
 
@@ -1364,8 +1401,37 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
 
     if (!suppressLogs) {
         const header = "===================================";
-        logOutput += `YARD CALCULATION:\n`;
-            logOutput += `${header}\n`;
+        const subheader = "-----------------------------------";
+        logOutput += `${header}\n`;
+        logOutput += `\n`;
+        logOutput += `YARD CHOSEN:\n`;
+        logOutput += `${yard.name}, ${yard.address}\n`;
+        logOutput += `\n`;
+        logOutput += `==> BASE PRICE: $${yard.price.toFixed(2)}\n`;
+        logOutput += `\n`;
+        logOutput += `${subheader}\n`;
+        logOutput += `\n`;
+        logOutput += `==> JOURNEY BREAKDOWN:\n`;
+            logOutput += `A - Starting At:\n`;
+            logOutput += `${yard.name}, ${yard.address}\n`;
+            logOutput += `\n`;
+            logOutput += `B - Drop Off At:\n`;
+            logOutput += `${addressInput}\n`;
+            logOutput += `\n`;
+            logOutput += ` ⤷ Duration to Drop Off: ${driveTime} min\n`;
+            logOutput += ` ⤷ Distance to Drop Off: ${totalDistance.toFixed(2)} miles\n`;
+            logOutput += `\n`;
+            logOutput += ` ⤷ Round Trip Duration: ${(driveTime * 2)} min\n`;
+            logOutput += ` ⤷ Round Trip Distance: ${(totalDistance * 2).toFixed(2)} miles\n`;
+            logOutput += `\n`;
+            logOutput += `TOTAL JOURNEY TIME: ${(driveTime * 2) * Object.values(groupedTrucks).reduce((sum, truck) => sum + truck.count, 0)} min\n`;
+            logOutput += `TOTAL DISTANCE: ${(totalDistance * Object.values(groupedTrucks).reduce((sum, truck) => sum + truck.count, 0)).toFixed(2)} miles\n`;
+            logOutput += `\n`;
+            logOutput += `${subheader}\n`;
+            logOutput += `\n`;
+            logOutput += `TRUCK(S):\n`;
+            logOutput += `\n`;
+            
             
             // Log truck-specific details
             Object.values(groupedTrucks).forEach(truck => {
@@ -1379,20 +1445,6 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
                 logOutput += `Total Trips: ${truckTrips}\n`;
                 logOutput += `\n`;
             });
-            
-            logOutput += `==> JOURNEY BREAKDOWN:\n`;
-            logOutput += `Yard Chosen:\n`;
-            logOutput += `${yard.name}, ${yard.address}\n`;
-            logOutput += ` ⤷ Duration to Drop Off: ${driveTime} min\n`;
-            logOutput += ` ⤷ Distance to Drop Off: ${totalDistance.toFixed(2)} miles\n`;
-            logOutput += `\n`;
-            logOutput += ` ⤷ Round Trip Duration: ${(driveTime * 2)} min\n`;
-            logOutput += ` ⤷ Round Trip Distance: ${(totalDistance * 2).toFixed(2)} miles\n`;
-            logOutput += `\n`;
-            logOutput += `TOTAL JOURNEY TIME: ${(driveTime * 2) * Object.values(groupedTrucks).reduce((sum, truck) => sum + truck.count, 0)} min\n`;
-            logOutput += `TOTAL DISTANCE: ${(totalDistance * Object.values(groupedTrucks).reduce((sum, truck) => sum + truck.count, 0)).toFixed(2)} miles\n`;
-            logOutput += `\n`;
-            logOutput += `==> BASE PRICE: $${yard.price.toFixed(2)}\n`;
             logOutput += `${header}\n\n`;
     }      
 
@@ -1621,9 +1673,98 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         groupedTruckLoads[key].loads.push(load);
     });
 
+    // Find the distance from the yard to the pit
+    let distanceYardToPitEntry = distances.find(d => 
+        d.from.trim() === pit.closest_yard.trim() && d.to.trim() === pit.address.trim()
+        );
+        let distanceYardToPit = distanceYardToPitEntry ? parseFloat(distanceYardToPitEntry.distance.replace(/[^\d.]/g, '')) : 0;
+    
+        // Log an error if the distance is not found
+        if (!distanceYardToPitEntry) {
+        console.error(`ERROR: Could not find distance from yard (${pit.closest_yard}) to pit (${pit.address}).`);
+        }
+    
+        // Find the distance from the pit to the drop-off location
+        let distancePitToDropEntry = distances.find(d => 
+        d.from.trim() === pit.address.trim() && d.to.trim() === addressInput.trim()
+        );
+        let distancePitToDrop = distancePitToDropEntry ? parseFloat(distancePitToDropEntry.distance.replace(/[^\d.]/g, '')) : 0;
+    
+        // Log an error if the distance is not found
+        if (!distancePitToDropEntry) {
+        console.error(`ERROR: Could not find distance from pit (${pit.address}) to drop-off (${addressInput}).`);
+        }
+    
+        // Find the distance from the drop-off location to the yard
+        let distanceDropToYardEntry = distances.find(d => 
+            d.from.trim().toLowerCase() === addressInput.trim().toLowerCase() &&
+            d.to.trim().toLowerCase() === yardLocations[finalClosestYard].trim().toLowerCase()
+        );
+        
+        if (!distanceDropToYardEntry) {
+            console.warn(`Distance from drop-off (${addressInput}) to yard (${finalClosestYard}) not found. Calculating...`);
+            const newDistances = await calculateDistances([
+                { origin: addressInput, destination: yardLocations[finalClosestYard] }
+            ]);
+            distances = distances.concat(newDistances);
+        
+            // Recheck for the distance after recalculating
+            distanceDropToYardEntry = distances.find(d => 
+                d.from.trim().toLowerCase() === addressInput.trim().toLowerCase() &&
+                d.to.trim().toLowerCase() === yardLocations[finalClosestYard].trim().toLowerCase()
+            );
+        }
+        
+        let distanceDropToYard = distanceDropToYardEntry ? parseFloat(distanceDropToYardEntry.distance.replace(/[^\d.]/g, '')) : 0;
+        
+        // Log an error if the distance is still not found
+        if (!distanceDropToYardEntry) {
+            console.error(`ERROR: Could not find or calculate distance from drop-off (${addressInput}) to yard (${finalClosestYard}).`);
+            console.log("Available Distances:", distances.map(d => `From: ${d.from}, To: ${d.to}`));
+        }
+
     const summaryHeader = "===================================";
-    logOutput += `PIT CALCULATION:\n`;
+    const subheader = "-----------------------------------";
     logOutput += `${summaryHeader}\n`;
+    logOutput += `\n`;
+    logOutput += `PIT Chosen:\n`;
+    logOutput += `${pit.name}, ${pit.address}\n`;
+    logOutput += `\n`;
+    logOutput += `==> BASE PRICE: $${pit.price.toFixed(2)}\n`;
+    logOutput += `\n`;
+    logOutput += `${subheader}\n`;
+    logOutput += `\n`;
+        logOutput += `==> JOURNEY BREAKDOWN:\n`;
+        logOutput += `A - Starting from:\n`;
+        logOutput += `${pit.closest_yard}\n`;
+        logOutput += `\n`;
+        logOutput += `B - Going to Pit:\n`;
+        logOutput += `${pit.name}, ${pit.address}\n`;
+        logOutput += ` ⤷ Duration: ${driveTimeYardToPit} min\n`;
+        logOutput += ` ⤷ Distance: ${distanceYardToPit} miles\n`;
+        logOutput += `\n`;
+        logOutput += `C - Drop off at:\n`;
+        logOutput += `${addressInput}\n`;
+        logOutput += ` ⤷ Duration: ${driveTimePitToDrop} min\n`;
+        logOutput += ` ⤷ Distance: ${distancePitToDrop} miles\n`;
+        logOutput += `\n`;
+        logOutput += `D - Ending at: ${finalClosestYard}\n`;
+        logOutput += ` ⤷ Duration: ${driveTimeDropToYard} min\n`;
+        logOutput += ` ⤷ Distance: ${distanceDropToYard} miles\n`;
+        logOutput += `\n`;
+
+        // Calculate total journey time and distance for all trips
+        const totalTrips = Object.values(groupedTruckLoads).reduce((sum, group) => sum + group.count, 0);
+        const totalJourneyTime = totalTrips * (driveTimeYardToPit + (driveTimePitToDrop * 2) + driveTimeDropToYard) * 1.15 + (36 * totalTrips);
+        const totalJourneyDistance = totalTrips * (distanceYardToPit + (distancePitToDrop * 2) + distanceDropToYard);
+
+        logOutput += `TOTAL JOURNEY TIME: ${Math.ceil(totalJourneyTime)} min\n`;
+        logOutput += `TOTAL DISTANCE: ${totalJourneyDistance.toFixed(2)} miles\n`;
+        logOutput += `\n`;
+        logOutput += `${subheader}\n`;
+        logOutput += `\n`;
+        logOutput += `TRUCK(S):\n`;
+        logOutput += `\n`;
 
     for (const key in groupedTruckLoads) {
         const group = groupedTruckLoads[key];
@@ -1654,6 +1795,7 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         logOutput += `Total Load: ${truckTotalLoad}\n`;
         logOutput += `Total Trips: ${truckTrips}\n`;
         logOutput += `\n`;
+        logOutput += `${summaryHeader}\n\n`;
     
         // Add each load to detailed costs
         group.loads.forEach(load => {
@@ -1665,87 +1807,7 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
                 costPerLoad: costPerUnit * load.amount
             });
         });
-    }    
-
-    // Find the distance from the yard to the pit
-    let distanceYardToPitEntry = distances.find(d => 
-    d.from.trim() === pit.closest_yard.trim() && d.to.trim() === pit.address.trim()
-    );
-    let distanceYardToPit = distanceYardToPitEntry ? parseFloat(distanceYardToPitEntry.distance.replace(/[^\d.]/g, '')) : 0;
-
-    // Log an error if the distance is not found
-    if (!distanceYardToPitEntry) {
-    console.error(`ERROR: Could not find distance from yard (${pit.closest_yard}) to pit (${pit.address}).`);
-    }
-
-    // Find the distance from the pit to the drop-off location
-    let distancePitToDropEntry = distances.find(d => 
-    d.from.trim() === pit.address.trim() && d.to.trim() === addressInput.trim()
-    );
-    let distancePitToDrop = distancePitToDropEntry ? parseFloat(distancePitToDropEntry.distance.replace(/[^\d.]/g, '')) : 0;
-
-    // Log an error if the distance is not found
-    if (!distancePitToDropEntry) {
-    console.error(`ERROR: Could not find distance from pit (${pit.address}) to drop-off (${addressInput}).`);
-    }
-
-    // Find the distance from the drop-off location to the yard
-    let distanceDropToYardEntry = distances.find(d => 
-        d.from.trim().toLowerCase() === addressInput.trim().toLowerCase() &&
-        d.to.trim().toLowerCase() === yardLocations[finalClosestYard].trim().toLowerCase()
-    );
-    
-    if (!distanceDropToYardEntry) {
-        console.warn(`Distance from drop-off (${addressInput}) to yard (${finalClosestYard}) not found. Calculating...`);
-        const newDistances = await calculateDistances([
-            { origin: addressInput, destination: yardLocations[finalClosestYard] }
-        ]);
-        distances = distances.concat(newDistances);
-    
-        // Recheck for the distance after recalculating
-        distanceDropToYardEntry = distances.find(d => 
-            d.from.trim().toLowerCase() === addressInput.trim().toLowerCase() &&
-            d.to.trim().toLowerCase() === yardLocations[finalClosestYard].trim().toLowerCase()
-        );
-    }
-    
-    let distanceDropToYard = distanceDropToYardEntry ? parseFloat(distanceDropToYardEntry.distance.replace(/[^\d.]/g, '')) : 0;
-    
-    // Log an error if the distance is still not found
-    if (!distanceDropToYardEntry) {
-        console.error(`ERROR: Could not find or calculate distance from drop-off (${addressInput}) to yard (${finalClosestYard}).`);
-        console.log("Available Distances:", distances.map(d => `From: ${d.from}, To: ${d.to}`));
-    }
-
-    logOutput += `==> JOURNEY BREAKDOWN:\n`;
-    logOutput += `Starting from:\n`;
-    logOutput += `${pit.closest_yard}\n`;
-    logOutput += `\n`;
-    logOutput += `Going to Pit:\n`;
-    logOutput += `${pit.name}, ${pit.address}\n`;
-    logOutput += ` ⤷ Duration: ${driveTimeYardToPit} min\n`;
-    logOutput += ` ⤷ Distance: ${distanceYardToPit} miles\n`;
-    logOutput += `\n`;
-    logOutput += `Drop off at:\n`;
-    logOutput += `${addressInput}\n`;
-    logOutput += ` ⤷ Duration: ${driveTimePitToDrop} min\n`;
-    logOutput += ` ⤷ Distance: ${distancePitToDrop} miles\n`;
-    logOutput += `\n`;
-    logOutput += `Ending at: ${finalClosestYard}\n`;
-    logOutput += ` ⤷ Duration: ${driveTimeDropToYard} min\n`;
-    logOutput += ` ⤷ Distance: ${distanceDropToYard} miles\n`;
-    logOutput += `\n`;
-
-    // Calculate total journey time and distance for all trips
-    const totalTrips = Object.values(groupedTruckLoads).reduce((sum, group) => sum + group.count, 0);
-    const totalJourneyTime = totalTrips * (driveTimeYardToPit + (driveTimePitToDrop * 2) + driveTimeDropToYard) * 1.15 + (36 * totalTrips);
-    const totalJourneyDistance = totalTrips * (distanceYardToPit + (distancePitToDrop * 2) + distanceDropToYard);
-
-    logOutput += `TOTAL JOURNEY TIME: ${Math.ceil(totalJourneyTime)} min\n`;
-    logOutput += `TOTAL DISTANCE: ${totalJourneyDistance.toFixed(2)} miles\n`;
-    logOutput += `\n`;
-    logOutput += `==> BASE PRICE: $${pit.price.toFixed(2)}\n`;
-    logOutput += `${summaryHeader}\n\n`;
+    } 
 
     let yardCostData = null;
     if (yardLoads.length > 0) {
@@ -1771,7 +1833,7 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
         }
     }
 
-    console.log(logOutput); // preserve console output
+    console.log(logOutput);
 
     return { totalCost, detailedCosts, location: pit, pitLoads, yardLoads, yardCostData, logOutput };
 }
@@ -1907,7 +1969,197 @@ async function calculateCost() {
     console.log(`Cheapest Option: ${cheapest.location.name}, Total Cost: $${cheapest.totalCost.toFixed(2)}`);
     
     displayResults(cheapest.totalCost, cheapest.detailedCosts, unit, cheapest.logOutput);
+
+    const dropOff = addressInput;
+
+    const isPit = cheapest.location.name.toLowerCase().includes("pit");
+    const isYard = cheapest.location.name.toLowerCase().includes("yard");
+    
+    if (isPit) {
+        const closestYardName = cheapest.location.closest_yard;
+        const closestYardAddress = yardLocations?.[closestYardName] || closestYardName;
+    
+        if (!closestYardAddress) {
+            console.warn("Missing closest yard address for pit delivery. Cannot draw route.");
+            return;
+        } else {
+            const yardToPit = {
+                yardName: closestYardName,
+                yardAddress: closestYardAddress
+            };
+    
+            cheapest.sourceType = "pit";
+            cheapest.sourceAddress = cheapest.location.address;
+    
+            console.log("Drawing Pit Route:", { yardToPit, dropOff, finalClosestYard: finalClosestYardLocation });
+    
+            drawRouteOnMap({
+                yardToPit,
+                cheapest,
+                dropOff,
+                yardUsed: true,
+                finalClosestYard: finalClosestYardLocation.address
+            });
+        }
+    }
+    
+    if (isYard) {
+        cheapest.sourceType = "yard";
+        cheapest.sourceAddress = cheapest.location.address;
+    
+        console.log("Drawing Yard-only Route:", { dropOff, yardAddress: cheapest.sourceAddress });
+    
+        drawRouteOnMap({
+            yardToPit: null,
+            cheapest,
+            dropOff,
+            yardUsed: true,
+        });
+    }      
 }
+
+
+
+
+
+
+
+
+/* --------------------- Render Maps -------------------------- */
+function drawRouteOnMap({ 
+    yardToPit = null, 
+    cheapest = null, 
+    dropOff = "", 
+    yardUsed = false, 
+    finalClosestYard = null 
+}) {
+    console.log("Drawing route with:", {
+        yardToPit, 
+        cheapest, 
+        dropOff, 
+        yardUsed, 
+        finalClosestYard
+    });
+
+    if (!dropOff || !directionsService) {
+        console.error("Missing dropOff address or directions service.");
+        return;
+    }
+
+    // Clear previous directions
+    if (pitDirectionsRenderer) pitDirectionsRenderer.setDirections({ routes: [] });
+    if (yardDirectionsRenderer) yardDirectionsRenderer.setDirections({ routes: [] });
+
+    const hasPitLoads = cheapest?.pitLoads?.length > 0;
+    const hasYardLoads = cheapest?.yardLoads?.length > 0;
+
+    // ========== 1. PIT-ONLY ROUTE ==========
+    if (hasPitLoads && !hasYardLoads && yardToPit?.yardAddress && finalClosestYard) {
+        const pitWaypoints = [
+            { location: cheapest.sourceAddress, stopover: true },
+            { location: dropOff, stopover: true }
+        ];
+
+        directionsService.route({
+            origin: yardToPit.yardAddress,
+            destination: finalClosestYard,
+            waypoints: pitWaypoints,
+            travelMode: google.maps.TravelMode.DRIVING,
+        }, (result, status) => {
+            if (status === "OK") {
+                pitDirectionsRenderer.setMap(pitMap);
+                pitDirectionsRenderer.setDirections(result);
+                console.log("PIT-ONLY route drawn.");
+            } else {
+                console.error("Pit-only route failed:", status);
+            }
+        });
+    }
+
+    // ========== 2. YARD-ONLY ROUTE ==========
+    if (cheapest?.sourceType === "yard" && !hasPitLoads) {
+        const yardOrigin = cheapest?.sourceAddress;
+        const yardDestination = dropOff;
+    
+        console.log("YARD-ONLY branch reached. Drawing Yard-only Route:", {
+            yardOrigin,
+            yardDestination,
+            yardMap,
+            yardDirectionsRenderer,
+        });
+    
+        if (!yardOrigin || !yardDestination) {
+            console.warn("Missing origin or destination for yard-only route.", {
+                yardOrigin,
+                yardDestination
+            });
+            return;
+        }
+    
+        if (!yardDirectionsRenderer.getMap()) {
+            yardDirectionsRenderer.setMap(yardMap);
+        }
+    
+        directionsService.route({
+            origin: yardOrigin,
+            destination: yardDestination,
+            travelMode: google.maps.TravelMode.DRIVING,
+        }, (result, status) => {
+            if (status === "OK") {
+                yardDirectionsRenderer.setDirections(result);
+                console.log("Yard-only route drawn successfully!");
+            } else {
+                console.error("Yard-only route failed:", status, result);
+            }
+        });
+    }    
+
+    // ========== 3. COMBINED PIT + YARD ROUTES ==========
+    if (hasPitLoads && hasYardLoads) {
+        // PIT MAP
+        if (yardToPit?.yardAddress && finalClosestYard) {
+            const pitWaypoints = [
+                { location: cheapest.sourceAddress, stopover: true },
+                { location: dropOff, stopover: true }
+            ];
+
+            directionsService.route({
+                origin: yardToPit.yardAddress,
+                destination: finalClosestYard,
+                waypoints: pitWaypoints,
+                travelMode: google.maps.TravelMode.DRIVING,
+            }, (result, status) => {
+                if (status === "OK") {
+                    pitDirectionsRenderer.setMap(pitMap);
+                    pitDirectionsRenderer.setDirections(result);
+                    console.log("PIT (mixed) route drawn.");
+                } else {
+                    console.error("Pit (mixed) route failed:", status);
+                }
+            });
+        }
+
+        // YARD MAP
+        const yardOrigin = finalClosestYard;
+        if (yardOrigin) {
+            directionsService.route({
+                origin: yardOrigin,
+                destination: dropOff,
+                travelMode: google.maps.TravelMode.DRIVING,
+            }, (result, status) => {
+                if (status === "OK") {
+                    yardDirectionsRenderer.setMap(yardMap);
+                    yardDirectionsRenderer.setDirections(result);
+                    console.log("YARD (mixed) route drawn.");
+                } else {
+                    console.error("Yard (mixed) route failed:", status);
+                }
+            });
+        }
+    }
+}
+
+
 
 
 
@@ -2070,7 +2322,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCostBasedOnPrice();
     }
 
-    // 🔹 Add pricing border color change logic here
+    // Add pricing border color change logic here
     const calculatorBox = document.querySelector(".calculator");
     if (elitePriceRadio && proPriceRadio && calculatorBox) {
         function updateBorderColor() {
@@ -2101,4 +2353,25 @@ document.addEventListener("DOMContentLoaded", () => {
             calculateCost();
         });
     }
+
+    const routeTriggerInputs = [
+        "address", 
+        "material", 
+        "tonsNeeded"
+    ];
+    
+    routeTriggerInputs.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener("change", () => {
+                const tons = parseFloat(document.getElementById("tonsNeeded")?.value || 0);
+                const address = document.getElementById("address")?.value || "";
+    
+                // Avoid premature calculations
+                if (address && !isNaN(tons) && tons > 0) {
+                    calculateCost(); // This will refresh the maps
+                }
+            });
+        }
+    });
 });

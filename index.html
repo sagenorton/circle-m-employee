@@ -20,18 +20,22 @@
 <body>
     <header class="site-header">
         <div class="branding">
-            <img src="assets/circle-m-logo.png" alt="Circle M Landscaping logo" class="logo">
-            <div class="brand-text">
-                <p class="tagline">Always Delivering Quality – Trusted Landscape Supply in Spokane & the Northwest</p>
-            </div>
+          <img src="assets/circle-m-logo.png" alt="Circle M Landscaping logo" class="logo">
         </div>
-    </header>    
+        <div class="calculator-header">
+          <h1><b>EMPLOYEE</b><br>Trucking Cost Calculator</h1>
+        </div>
+      </header>
+      
+
     <div id="calculator" class="calculator">
-        <header class="calculator-header">
-            <h1> <b>EMPLOYEE</b><br>Trucking Cost Calculator</h1>
-        </header>
-        <form id="calcForm" novalidate>
-            <div class="form-group">
+      
+        <!-- Wrap layout in its own container -->
+        <div class="calculator-layout">
+          
+          <!-- Left Column: Form -->
+          <div class="calculator-column">
+            <form id="calcForm" novalidate>
                 <label>Address:</label>
                 <input 
                     type="text" 
@@ -41,7 +45,6 @@
                     aria-describedby="address-help" 
                     required>
                     <span id="address-help" class="help-text" aria-live="polite" style="display: none;"></span>
-            </div>
             <div class="form-group">
                 <label>Material:</label>
                 <select id="material" name="material">
@@ -110,8 +113,6 @@
                         <option value="deicing_salt_sand_torp_mix" data-unit="ton">De-Icing Salt & Sand Torp Mix</option>
                     </optgroup>
                 </select>
-                
-                
             </div>
             <div class="form-group">
                 <label>Yards/Tons Needed:</label>
@@ -121,7 +122,6 @@
                     name="tonsNeeded" 
                     placeholder="Enter amount needed" 
                     min="3" 
-                    step="1" 
                     aria-describedby="tons-help" 
                     required>
                     <span id="tons-help" class="help-text" aria-live="polite" style="display: none;"></span>
@@ -139,8 +139,6 @@
             <div class="form-group">
                 <button type="submit">Calculate Cost</button>
             </div>
-            <!-- Loader element -->
-            <div id="loader" aria-live="polite">Calculating, please wait...</div>
             <div class="form-group">
                 <label>Subtotal (Price per Yard/Ton):</label>
                 <div id="subtotal" class="load-details" readonly></div>
@@ -154,12 +152,29 @@
                     readonly 
                     aria-readonly="true">
             </div>
+        </form>
+    </div>
+
+        <!-- Middle Column: Breakdown -->
+        <div class="breakdown-column">
             <div class="form-group">
                 <label>Breakdown:</label>
                 <pre id="breakdownLog" class="breakdownLog" readonly></pre>
-            </div>                     
-        </form>
-    </div>
+            </div>
+        </div>
+        
+          <!-- Right Column: Map(s) placeholder -->
+        <div class="map-subcolumn">
+            <label>PIT MAP:</label>
+            <div id="pitMap" class="map-box">Pit Route Map</div>
+        </div>
+        <div class="map-subcolumn">
+            <label>YARD MAP:</label>
+            <div id="yardMap" class="map-box">Yard Route Map</div>
+        </div>
+
+    </div> <!-- End of calculator layout -->
+</div> <!-- End of calculator -->
 
     <footer class="site-footer">
         <div class="footer-columns">
