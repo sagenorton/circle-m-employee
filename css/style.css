@@ -303,12 +303,7 @@ button:focus {
 @media (max-width: 768px) {
     body {
         padding: 20px;
-        width: auto;
-    }
-    .calculator {
-        width: 90%;
-        padding: 1rem;
-        box-shadow: none;
+        width: 95vw;
     }
     .calculator-layout {
         grid-template-columns: 1fr;
@@ -324,13 +319,22 @@ button:focus {
         text-align: center;
         gap: 1rem;
     }
+
     .calculator-header {
+        position: static;
+        transform: none;
         width: 100%;
-        margin-bottom: 1rem;
     }
-    .branding .logo {
+
+    .branding {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logo {
         max-height: 70px;
     }
+
     .form-group {
         margin-bottom: 1rem;
     }
@@ -341,7 +345,6 @@ button:focus {
         font-size: 14px;
         padding: 10px;
     }
-
     form button {
         font-size: 14px;
     }
@@ -392,8 +395,11 @@ button:focus {
         width: 90vw;
     }
     .calculator {
-        padding: 1rem;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
     }
+
     form button {
         font-size: 14px;
     }
