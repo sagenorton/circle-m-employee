@@ -171,6 +171,7 @@ form button {
     display: flex;
     gap: 10px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .pricing-radio-buttons input[type="radio"] {
@@ -189,6 +190,22 @@ form button {
 
 .pricing-radio-buttons input[id="proPrice"] + label {
     color: crimson;
+}
+
+.wholesale-toggle-inline {
+    display: flex;
+    align-items: center;
+}
+
+.wholesale-toggle-inline label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: .5rem;
+}
+
+.wholesale-toggle-inline input[type="checkbox"] {
+    accent-color: black;
+    margin-top: .4rem;
 }
 
 form button {

@@ -128,15 +128,21 @@
                     <span id="tons-help" class="help-text" aria-live="polite" style="display: none;"></span>
             </div>
             <div class="form-group">
-                <label>Select Pricing Plan:</label>
-                <div class="pricing-radio-buttons">
-                    <input type="radio" id="elitePrice" name="pricing" value="elite" checked>
-                    <label for="elitePrice">ELITE</label>
+              <label>Select Pricing Plan:</label>
+              <div class="pricing-radio-buttons">
+                <input type="radio" id="elitePrice" name="pricing" value="elite" checked>
+                <label for="elitePrice">ELITE</label>
             
-                    <input type="radio" id="proPrice" name="pricing" value="pro">
-                    <label for="proPrice">PRO</label>
+                <input type="radio" id="proPrice" name="pricing" value="pro">
+                <label for="proPrice">PRO</label>
+            
+                <!-- WHOLESALE Toggle -->
+                <div class="wholesale-toggle-inline">
+                  <input type="checkbox" id="wholesaleMode">
+                  <label for="wholesaleMode">WHOLESALE</label>
                 </div>
-            </div>                                 
+              </div>
+            </div>                          
             <div class="form-group">
                 <button type="submit">Calculate Cost</button>
             </div>
