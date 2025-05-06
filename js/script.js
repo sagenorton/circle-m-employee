@@ -1569,121 +1569,137 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
 
 
 
+
+
 /* --------------------- Calculate the Wholesale truck loads for Pits -------------------------- */
 async function calculatePitWholesaleTruckLoads(materialInfo, amountNeeded, unit, location, addressInput, yardLocations) {
     const wholesaleTruck = {
-        truckName: "Side Dump/Truck n Pup",
-        rate: 185,
-        type: "wholesale"
+      truckName: "Side Dump/Truck n Pup",
+      rate: 185,
+      type: "wholesale"
     };
-
+  
     const min = unit === "yard" ? 21 : 26;
     const max = unit === "yard" ? 30 : 32;
-
+  
     let remaining = amountNeeded;
     const trucksUsed = [];
-
-    // Normalize and resolve closest_yard from either name or address
+  
     const normalizedClosest = location.closest_yard?.trim().toLowerCase();
     const finalClosestYard = Object.entries(yardLocations).find(([name, addr]) =>
-        name.trim().toLowerCase() === normalizedClosest || addr.trim().toLowerCase() === normalizedClosest
+      name.trim().toLowerCase() === normalizedClosest || addr.trim().toLowerCase() === normalizedClosest
     )?.[0] || null;
-
+  
     if (!finalClosestYard) {
-        console.warn(`Skipping PIT ${location.name}: Unrecognized closest_yard "${location.closest_yard}"`);
+      console.warn(`Skipping PIT ${location.name}: Unrecognized closest_yard "${location.closest_yard}"`);
+      return { costObject: null };
+    }
+  
+    // Fill with full wholesale trucks
+    while (remaining >= max) {
+      trucksUsed.push({
+        ...wholesaleTruck,
+        amount: max,
+        unit,
+        origin: location.address
+      });
+      remaining -= max;
+    }
+  
+    // Add one partial wholesale truck if it's above min
+    if (remaining >= min) {
+      trucksUsed.push({
+        ...wholesaleTruck,
+        amount: remaining,
+        unit,
+        origin: location.address
+      });
+      remaining = 0;
+    }
+  
+    // === REMAINDER: Evaluate cheapest fulfillment for leftover from any yard ===
+    let yardLoads = [];
+    let fallbackTotal = 0;
+    let fallbackLog = '';
+    let detailedCosts = [];
+
+    if (remaining > 0) {
+    let bestYardOption = null;
+
+    for (const altLocation of materialInfo.locations) {
+        const isYard = altLocation.name.toLowerCase().includes("yard");
+        if (!isYard) continue;
+
+        const yardName = altLocation.name;
+
+        const distances = await calculateDistances([
+        { origin: altLocation.address, destination: addressInput },
+        { origin: addressInput, destination: altLocation.address }
+        ]);
+
+        const result = await assignToYard(remaining, materialInfo, yardName, distances, addressInput, false);
+
+        const valid = result && Array.isArray(result.yardLoads) && result.yardLoads.length > 0 && isFinite(result.totalCost);
+
+        if (valid && (!bestYardOption || result.totalCost < bestYardOption.totalCost)) {
+        bestYardOption = {
+            yardLoads: result.yardLoads,
+            yardCostData: {
+            totalCost: result.totalCost,
+            detailedCosts: result.detailedCosts,
+            logOutput: result.logOutput
+            }
+        };
+        }
+    }
+
+    if (!bestYardOption) {
+        console.warn(`No valid yard fallback found for remaining ${remaining} ${unit}`);
         return { costObject: null };
     }
 
-    // Full wholesale loads
-    while (remaining >= max) {
-        trucksUsed.push({
-            ...wholesaleTruck,
-            amount: max,
-            unit,
-            origin: location.address
-        });
-        remaining -= max;
+    yardLoads = bestYardOption.yardLoads;
+    fallbackTotal = bestYardOption.yardCostData.totalCost;
+    detailedCosts = Array.isArray(bestYardOption.yardCostData.detailedCosts)
+    ? bestYardOption.yardCostData.detailedCosts
+    : [];
+    fallbackLog = bestYardOption.yardCostData.logOutput;
     }
-
-    // Partial wholesale load
-    if (remaining >= min) {
-        trucksUsed.push({
-            ...wholesaleTruck,
-            amount: remaining,
-            unit,
-            origin: location.address
-        });
-        remaining = 0;
-    }
-
-    // Fallback if still remaining
-    if (remaining > 0) {
-        const pitFallback = await calculatePitTruckLoads(
-            remaining,
-            materialInfo,
-            location,
-            finalClosestYard,
-            [],
-            addressInput
-        );
-
-        if (!pitFallback || !Array.isArray(pitFallback.pitLoads) || pitFallback.pitLoads.length === 0) {
-            console.warn(`Fallback pit truck loads were invalid or empty for ${location.name}. Skipping compute.`);
-            return { costObject: null };
-        }
-
-        trucksUsed.push(...pitFallback.pitLoads);
-
-        const distances = await calculateDistances([
-            { origin: yardLocations[finalClosestYard], destination: location.address },
-            { origin: location.address, destination: addressInput },
-            { origin: addressInput, destination: yardLocations[finalClosestYard] }
-        ]);
-
-        const pitCosts = await computePitCosts(
-            trucksUsed,
-            location,
-            distances,
-            addressInput,
-            pitFallback.yardLoads || [],
-            pitFallback.totalCost || 0,
-            materialInfo,
-            yardLocations,
-            amountNeeded
-        );
-
-        console.log(`WHOLESALE PIT (with fallback): ${location.name}, Total Cost: $${pitCosts.totalCost.toFixed(2)}`);
-        return { costObject: pitCosts };
-    }
-
-    // No fallback — compute wholesale-only
-    const distances = await calculateDistances([
-        { origin: yardLocations[finalClosestYard], destination: location.address },
-        { origin: location.address, destination: addressInput },
-        { origin: addressInput, destination: yardLocations[finalClosestYard] }
+  
+    const finalDistances = await calculateDistances([
+      { origin: yardLocations[finalClosestYard], destination: location.address },
+      { origin: location.address, destination: addressInput },
+      { origin: addressInput, destination: yardLocations[finalClosestYard] }
     ]);
-
+  
     const pitCosts = await computePitCosts(
-        trucksUsed,
-        location,
-        distances,
-        addressInput,
-        [],
-        0,
-        materialInfo,
-        yardLocations,
-        amountNeeded
+      trucksUsed,
+      location,
+      finalDistances,
+      addressInput,
+      yardLoads,
+      fallbackTotal,
+      materialInfo,
+      yardLocations,
+      amountNeeded
     );
-
-    console.log(`WHOLESALE PIT: ${location.name}, Total Cost: $${pitCosts.totalCost.toFixed(2)}`);
+  
+    pitCosts.pitLoads = trucksUsed;
+    pitCosts.yardLoads = yardLoads;
+    pitCosts.yardCostData = yardLoads.length > 0 ? {
+      totalCost: fallbackTotal,
+      detailedCosts,
+      logOutput: fallbackLog
+    } : null;
+  
+    pitCosts.detailedCosts = [
+        ...(Array.isArray(pitCosts.detailedCosts) ? pitCosts.detailedCosts : []),
+        ...detailedCosts
+      ];      
+  
+    console.log(`WHOLESALE PIT FINAL: ${location.name} | Total Cost: $${pitCosts.totalCost.toFixed(2)}`);
     return { costObject: pitCosts };
-}
-
-
-
-
-
-
+} 
 
 
 
