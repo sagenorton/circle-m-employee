@@ -2094,10 +2094,20 @@ async function computePitCosts(pitLoads, pit, distances, addressInput, yardLoads
 
         // Calculate total journey time and distance for all trips
         const totalTrips = Object.values(groupedTruckLoads).reduce((sum, group) => sum + group.count, 0);
-        const totalJourneyTime = totalTrips * (driveTimeYardToPit + (driveTimePitToDrop * 2) + driveTimeDropToYard) * 1.15 + (36 * totalTrips);
-        const totalJourneyDistance = totalTrips * (distanceYardToPit + (distancePitToDrop * 2) + distanceDropToYard);
 
-        logOutput += `TOTAL JOURNEY TIME: ${Math.ceil(totalJourneyTime)} min\n`;
+        const startLeg = driveTimeYardToPit;
+        const repeatLegs = (totalTrips - 1) * (driveTimePitToDrop * 2);
+        const finalTrip = driveTimePitToDrop + driveTimeDropToYard;
+
+        const totalJourneyTime = (startLeg + repeatLegs + finalTrip) * 1.15 + (36 * totalTrips);
+
+        const totalJourneyDistance = 
+            distanceYardToPit + 
+            (distancePitToDrop * 2 * (totalTrips - 1)) +
+            distancePitToDrop + 
+            distanceDropToYard;
+
+        logOutput += `TOTAL JOURNEY TIME: ${Math.ceil(totalJourneyTime)} min (${(totalJourneyTime / 60).toFixed(2)} hrs)\n`;
         logOutput += `TOTAL DISTANCE: ${totalJourneyDistance.toFixed(2)} miles\n`;
         logOutput += `\n`;
         logOutput += `${subheader}\n`;
