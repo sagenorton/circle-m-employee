@@ -2764,13 +2764,39 @@ async function calculateCost() {
     costResults.sort((a, b) => a.totalCost - b.totalCost);
 
     // Store all results for navigation
-    allCostResults = costResults.map(result => ({
-        ...result,
-        unit,
-        // Optionally store any extra info needed for drawRouteOnMap
-        yardToPit: result.yardToPit || null,
-        finalClosestYard: finalClosestYardLocation?.address || null
-    }));
+    allCostResults = costResults.map(result => {
+        const isPit = result.location.name.toLowerCase().includes("pit");
+        const isYard = result.location.name.toLowerCase().includes("yard");
+
+        let sourceType = null;
+        let sourceAddress = result.location.address;
+        let yardToPit = null;
+
+        if (isPit) {
+            const closestYardName = result.location.closest_yard;
+            const closestYardAddress = yardLocations?.[closestYardName] || closestYardName;
+
+            if (closestYardAddress) {
+                sourceType = "pit";
+                yardToPit = {
+                    yardName: closestYardName,
+                    yardAddress: closestYardAddress
+                };
+            }
+        } else if (isYard) {
+            sourceType = "yard";
+        }
+
+        return {
+            ...result,
+            unit,
+            sourceType,
+            sourceAddress,
+            yardToPit,
+            finalClosestYard: finalClosestYardLocation?.address || null
+        };
+    });
+
     currentResultIndex = 0;
 
     // Show the navigator and display the first (cheapest) result
@@ -3130,6 +3156,28 @@ function updateResultNavigator() {
     const dropOff = document.getElementById('address')?.value || '';
     const yardLocations = window.yardLocations || {};
     const finalClosestYard = result.finalClosestYard || (result.location && result.location.name && yardLocations[result.location.name]);
+
+    // Enrich current result with source type/address if missing
+    if (!result.sourceType || !result.sourceAddress) {
+        const isPit = result.location.name.toLowerCase().includes("pit");
+        const isYard = result.location.name.toLowerCase().includes("yard");
+
+        if (isPit) {
+            const closestYardName = result.location.closest_yard;
+            const closestYardAddress = yardLocations?.[closestYardName] || closestYardName;
+
+            result.sourceType = "pit";
+            result.sourceAddress = result.location.address;
+            result.yardToPit = {
+                yardName: closestYardName,
+                yardAddress: closestYardAddress
+            };
+        } else if (isYard) {
+            result.sourceType = "yard";
+            result.sourceAddress = result.location.address;
+        }
+    }
+
     drawRouteOnMap({
         yardToPit: result.yardToPit || null,
         cheapest: result,
