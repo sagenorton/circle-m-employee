@@ -242,6 +242,12 @@ form button:hover {
     gap: 10px;
     font-weight: bold;
     font-size: 1rem;
+    white-space: nowrap;
+}
+
+#resultCounter {
+    text-align: center;
+    display: inline-block;
 }
 
 .nav-arrow {
