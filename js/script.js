@@ -2836,6 +2836,9 @@ function drawRouteOnMap({
         finalClosestYard
     });
 
+    const hasPitLoads = cheapest?.pitLoads?.length > 0;
+    const hasYardLoads = cheapest?.yardLoads?.length > 0;
+
     if (!cheapest.sourceAddress) console.warn("❌ Missing sourceAddress");
     if (hasPitLoads && !yardToPit?.yardAddress) console.warn("❌ Missing yardToPit address");
     if (!finalClosestYard) console.warn("❌ Missing finalClosestYard");
@@ -2848,9 +2851,6 @@ function drawRouteOnMap({
     // Clear previous directions
     if (pitDirectionsRenderer) pitDirectionsRenderer.setDirections({ routes: [] });
     if (yardDirectionsRenderer) yardDirectionsRenderer.setDirections({ routes: [] });
-
-    const hasPitLoads = cheapest?.pitLoads?.length > 0;
-    const hasYardLoads = cheapest?.yardLoads?.length > 0;
 
     // ========== 1. PIT-ONLY ROUTE ==========
     if (hasPitLoads && !hasYardLoads && yardToPit?.yardAddress && finalClosestYard) {
