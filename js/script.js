@@ -2767,18 +2767,18 @@ async function calculateCost() {
     updateResultUI();
 
     console.log("Final breakdown for split combo:", cheapest.detailedCosts);
-    
+
     displayResults(cheapest.totalCost, cheapest.detailedCosts, unit, cheapest.logOutput);
 
     const dropOff = addressInput;
 
     const isPit = cheapest.location.name.toLowerCase().includes("pit");
     const isYard = cheapest.location.name.toLowerCase().includes("yard");
-    
+
     if (isPit) {
         const closestYardName = cheapest.location.closest_yard;
         const closestYardAddress = yardLocations?.[closestYardName] || closestYardName;
-    
+
         if (!closestYardAddress) {
             console.warn("Missing closest yard address for pit delivery. Cannot draw route.");
             return;
@@ -2787,12 +2787,12 @@ async function calculateCost() {
                 yardName: closestYardName,
                 yardAddress: closestYardAddress
             };
-    
+
             cheapest.sourceType = "pit";
             cheapest.sourceAddress = cheapest.location.address;
-    
+
             console.log("Drawing Pit Route:", { yardToPit, dropOff, finalClosestYard: finalClosestYardLocation });
-    
+
             drawRouteOnMap({
                 yardToPit,
                 cheapest,
@@ -2802,20 +2802,21 @@ async function calculateCost() {
             });
         }
     }
-    
+
     if (isYard) {
         cheapest.sourceType = "yard";
         cheapest.sourceAddress = cheapest.location.address;
-    
+
         console.log("Drawing Yard-only Route:", { dropOff, yardAddress: cheapest.sourceAddress });
-    
+
         drawRouteOnMap({
             yardToPit: null,
             cheapest,
             dropOff,
             yardUsed: true,
         });
-    }      
+    }
+
 }
 
 
