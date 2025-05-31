@@ -2767,33 +2767,40 @@ async function calculateCost() {
     allCostResults = costResults.map(result => {
         const isPit = result.location.name.toLowerCase().includes("pit");
         const isYard = result.location.name.toLowerCase().includes("yard");
-
+    
         let sourceType = null;
         let sourceAddress = result.location.address;
         let yardToPit = null;
-
+        let finalClosestYardAddress = finalClosestYardLocation?.address || null;
+    
         if (isPit) {
             const closestYardName = result.location.closest_yard;
             const closestYardAddress = yardLocations?.[closestYardName] || closestYardName;
-
             if (closestYardAddress) {
                 sourceType = "pit";
                 yardToPit = {
                     yardName: closestYardName,
                     yardAddress: closestYardAddress
                 };
+                finalClosestYardAddress = closestYardAddress;
             }
         } else if (isYard) {
             sourceType = "yard";
+            finalClosestYardAddress = result.location.address;
         }
-
+    
+        // For PIT+YARD split combos, try to get the correct yard address from the split data
+        if (result.sourceType === "pit+yard" && result.closestYardAddress) {
+            finalClosestYardAddress = result.closestYardAddress;
+        }
+    
         return {
             ...result,
             unit,
-            sourceType,
+            sourceType: result.sourceType || sourceType,
             sourceAddress,
             yardToPit,
-            finalClosestYard: finalClosestYardLocation?.address || null
+            finalClosestYard: finalClosestYardAddress
         };
     });
 
