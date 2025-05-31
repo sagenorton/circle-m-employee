@@ -88,8 +88,8 @@
                         <option value="34_114_basalt_chips" data-unit="ton">3/4" & 1 1/4" Basalt Chips</option>
                         <option value="58_2_2_to_6_riverbed_mix" data-unit="ton">5/8" & 2" & 2 to 6" Riverbed Mix</option>
                         <option value="autumn_gold" data-unit="ton">Autumn Gold: Lane Mt</option>
-                        <option value="black_lava_rock" data-unit="ton">Black Lava Rock</option>
-                        <option value="red_lava_rock" data-unit="ton">Red Lava Rock</option>
+                        <option value="black_lava_rock" data-unit="yard">Black Lava Rock</option>
+                        <option value="red_lava_rock" data-unit="yard">Red Lava Rock</option>
                     </optgroup>
                     <optgroup label="Bark Products">
                         <option value="aged_dark_fines" data-unit="yard">Aged Dark Fines</option>
@@ -158,6 +158,11 @@
                     name="totalCost" 
                     readonly 
                     aria-readonly="true">
+            </div>
+            <div id="resultNavigator" class="result-navigator" style="display: none;">
+                <button id="prevResult" class="nav-arrow" aria-label="Previous Option">&larr;</button>
+                <span id="resultCounter">1 of 1</span>
+                <button id="nextResult" class="nav-arrow" aria-label="Next Option">&rarr;</button>
             </div>
         </form>
     </div>

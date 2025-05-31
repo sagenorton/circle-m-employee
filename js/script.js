@@ -697,7 +697,7 @@ const materialData = {
         ]
     },
     "black_lava_rock": {
-        "sold_by": "ton",
+        "sold_by": "yard",
         "locations": [
             { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 113.00, "pro_price": 124.50, "trucks": ["truck_A", "truck_B", "truck_C"] },
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 113.00, "pro_price": 124.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
@@ -713,7 +713,7 @@ const materialData = {
         ]
     },
     "red_lava_rock": {
-        "sold_by": "ton",
+        "sold_by": "yard",
         "locations": [
             { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 98.00, "pro_price": 107.00, "trucks": ["truck_A", "truck_B", "truck_C"] },
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 98.00, "pro_price": 107.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
@@ -977,6 +977,9 @@ const yardLocations = {
     "I90 Yard": "1820 N University Rd, Spokane Valley, WA 99206",
     "Hawthorne Yard": "1208 E Hawthorne Rd, Spokane, WA 99217"
 };
+
+let costResults = [];
+let currentResultIndex = 0;
 
 
 
@@ -2753,16 +2756,16 @@ async function calculateCost() {
         }
     }
 
-    costResults = costResults.filter(result => result && !isNaN(result.totalCost));
-
+    costResults = costResults.filter(result => result && isFinite(result.totalCost));
     if (costResults.length === 0) {
         console.error("ERROR: No valid cost calculations available. Aborting process.");
         return;
     }
 
-    // Find the cheapest total cost
-    let cheapest = costResults.reduce((min, curr) => (curr.totalCost < min.totalCost ? curr : min));
-    console.log(`Cheapest Option: ${cheapest.location.name}, Total Cost: $${cheapest.totalCost.toFixed(2)}`);
+    costResults.sort((a, b) => a.totalCost - b.totalCost);
+    currentResultIndex = 0;
+    updateResultUI();
+
     console.log("Final breakdown for split combo:", cheapest.detailedCosts);
     
     displayResults(cheapest.totalCost, cheapest.detailedCosts, unit, cheapest.logOutput);
@@ -3093,6 +3096,42 @@ function displayResults(totalCost, detailedCosts, unit, logOutput = "") {
 
 
 
+/* --------------------- Update UI with results -------------------------- */
+function updateResultUI() {
+    const result = costResults[currentResultIndex];
+    const unit = document.getElementById("material")?.selectedOptions[0]?.dataset.unit || "unit";
+    if (!result) return;
+
+    displayResults(result.totalCost, result.detailedCosts, unit, result.logOutput || "");
+    drawRouteOnMap({
+        yardToPit: result.sourceType === "pit" || result.sourceType === "pit+yard" 
+            ? { yardName: result.location.closest_yard, yardAddress: yardLocations?.[result.location.closest_yard] }
+            : null,
+        cheapest: result,
+        dropOff: document.getElementById("address").value,
+        yardUsed: result.sourceType === "yard" || result.sourceType === "pit+yard",
+        finalClosestYard: yardLocations?.[result.closestYardAddress || result.location?.address]
+    });
+
+    // Update UI counter and arrow visibility
+    const counter = document.getElementById("resultCounter");
+    if (counter) counter.textContent = `${currentResultIndex + 1} of ${costResults.length}`;
+
+    const navContainer = document.getElementById("resultNavigator");
+    if (navContainer) navContainer.style.display = "flex";
+
+    document.getElementById("prevResult").disabled = currentResultIndex === 0;
+    document.getElementById("nextResult").disabled = currentResultIndex === costResults.length - 1;
+}
+
+
+
+
+
+
+
+
+
 
 /* --------------------- Event Listeners -------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
@@ -3199,6 +3238,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (address && !isNaN(tons) && tons > 0) {
                 calculateCost();
+            }
+        });
+    }
+
+    const prevBtn = document.getElementById("prevResult");
+    const nextBtn = document.getElementById("nextResult");
+
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener("click", () => {
+            if (currentResultIndex > 0) {
+                currentResultIndex--;
+                updateResultUI();
+            }
+        });
+
+        nextBtn.addEventListener("click", () => {
+            if (currentResultIndex < costResults.length - 1) {
+                currentResultIndex++;
+                updateResultUI();
             }
         });
     }
