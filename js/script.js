@@ -2539,6 +2539,8 @@ async function calculateCost() {
     const amountNeeded = parseFloat(document.getElementById('tonsNeeded')?.value || 0);
     const materialInfo = materialData[selectedMaterial];
 
+    console.warn("⚠️ calculateCost() was called unexpectedly");
+
     // Safeguard to ensure materialInfo is available
     if (!materialInfo) {
         console.error(`No material info found for the selected material: ${selectedMaterial}`);
@@ -2834,6 +2836,10 @@ function drawRouteOnMap({
         finalClosestYard
     });
 
+    if (!cheapest.sourceAddress) console.warn("❌ Missing sourceAddress");
+    if (hasPitLoads && !yardToPit?.yardAddress) console.warn("❌ Missing yardToPit address");
+    if (!finalClosestYard) console.warn("❌ Missing finalClosestYard");
+
     if (!dropOff || !directionsService) {
         console.error("Missing dropOff address or directions service.");
         return;
@@ -3111,6 +3117,9 @@ function updateResultNavigator() {
 
     // Show the selected result
     const result = allCostResults[currentResultIndex];
+    if (!result.detailedCosts || result.detailedCosts.length === 0) {
+        console.warn("❗ Result missing detailedCosts. Index:", currentResultIndex);
+    }
     displayResults(result.totalCost, result.detailedCosts, result.unit, result.logOutput);
 
     // Redraw the map for this result
