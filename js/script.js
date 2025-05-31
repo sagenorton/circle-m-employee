@@ -2764,29 +2764,29 @@ async function calculateCost() {
     costResults.sort((a, b) => a.totalCost - b.totalCost);
 
     // Store all results for navigation
-    allCostResults = costResults.map(result => {
+        allCostResults = costResults.map(result => {
         const isPit = result.location.name.toLowerCase().includes("pit");
         const isYard = result.location.name.toLowerCase().includes("yard");
     
-        let sourceType = null;
-        let sourceAddress = result.location.address;
-        let yardToPit = null;
-        let finalClosestYardAddress = finalClosestYardLocation?.address || null;
+        let sourceType = result.sourceType || null;
+        let sourceAddress = result.sourceAddress || result.location.address;
+        let yardToPit = result.yardToPit || null;
+        let finalClosestYardAddress = result.finalClosestYard || finalClosestYardLocation?.address || null;
     
         if (isPit) {
             const closestYardName = result.location.closest_yard;
             const closestYardAddress = yardLocations?.[closestYardName] || closestYardName;
             if (closestYardAddress) {
-                sourceType = "pit";
-                yardToPit = {
+                sourceType = sourceType || "pit";
+                yardToPit = yardToPit || {
                     yardName: closestYardName,
                     yardAddress: closestYardAddress
                 };
-                finalClosestYardAddress = closestYardAddress;
+                finalClosestYardAddress = finalClosestYardAddress || closestYardAddress;
             }
         } else if (isYard) {
-            sourceType = "yard";
-            finalClosestYardAddress = result.location.address;
+            sourceType = sourceType || "yard";
+            finalClosestYardAddress = finalClosestYardAddress || result.location.address;
         }
     
         // For PIT+YARD split combos, try to get the correct yard address from the split data
@@ -2797,7 +2797,7 @@ async function calculateCost() {
         return {
             ...result,
             unit,
-            sourceType: result.sourceType || sourceType,
+            sourceType,
             sourceAddress,
             yardToPit,
             finalClosestYard: finalClosestYardAddress
@@ -3113,62 +3113,18 @@ function updateResultNavigator() {
     prevBtn.disabled = currentResultIndex === 0;
     nextBtn.disabled = currentResultIndex === allCostResults.length - 1;
 
-    // Always use the correct yardLocations object
-    const yardLocationsObj = typeof yardLocations !== "undefined" ? yardLocations : (
-        window.yardLocations || {
-            "I90 Yard": "1820 N University Rd, Spokane Valley, WA 99206",
-            "Hawthorne Yard": "1208 E Hawthorne Rd, Spokane, WA 99217"
-        }
-    );
-
-    // Show the selected result
+    // Use the result as-is (already enriched)
     const result = allCostResults[currentResultIndex];
     displayResults(result.totalCost, result.detailedCosts, result.unit, result.logOutput);
 
     // Redraw the map for this result
     const dropOff = document.getElementById('address')?.value || '';
-    let finalClosestYard = result.finalClosestYard;
-
-    // Enrich current result with source type/address if missing (do NOT mutate original result)
-    let enrichedResult = { ...result };
-    if (!enrichedResult.sourceType || !enrichedResult.sourceAddress) {
-        const isPit = enrichedResult.location?.name?.toLowerCase().includes("pit");
-        const isYard = enrichedResult.location?.name?.toLowerCase().includes("yard");
-
-        if (isPit) {
-            const closestYardName = enrichedResult.location.closest_yard;
-            const closestYardAddress = yardLocationsObj?.[closestYardName] || closestYardName;
-            enrichedResult = {
-                ...enrichedResult,
-                sourceType: "pit",
-                sourceAddress: enrichedResult.location.address,
-                yardToPit: {
-                    yardName: closestYardName,
-                    yardAddress: closestYardAddress
-                }
-            };
-            if (!finalClosestYard) finalClosestYard = closestYardAddress;
-        } else if (isYard) {
-            enrichedResult = {
-                ...enrichedResult,
-                sourceType: "yard",
-                sourceAddress: enrichedResult.location.address
-            };
-            if (!finalClosestYard) finalClosestYard = enrichedResult.location.address;
-        }
-    }
-
-    // For pit+yard split combos, ensure finalClosestYard is set
-    if (enrichedResult.sourceType === "pit+yard" && enrichedResult.closestYardAddress) {
-        finalClosestYard = enrichedResult.closestYardAddress;
-    }
-
     drawRouteOnMap({
-        yardToPit: enrichedResult.yardToPit || null,
-        cheapest: enrichedResult,
+        yardToPit: result.yardToPit || null,
+        cheapest: result,
         dropOff,
         yardUsed: true,
-        finalClosestYard
+        finalClosestYard: result.finalClosestYard
     });
 }
 
