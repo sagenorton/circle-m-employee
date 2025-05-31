@@ -2752,67 +2752,29 @@ async function calculateCost() {
             }
         }
     }
-
-    costResults = costResults.filter(result => result && !isNaN(result.totalCost));
-
-    if (costResults.length === 0) {
-        console.error("ERROR: No valid cost calculations available. Aborting process.");
-        return;
-    }
-
-    // Find the cheapest total cost
-    let cheapest = costResults.reduce((min, curr) => (curr.totalCost < min.totalCost ? curr : min));
-    console.log(`Cheapest Option: ${cheapest.location.name}, Total Cost: $${cheapest.totalCost.toFixed(2)}`);
-    console.log("Final breakdown for split combo:", cheapest.detailedCosts);
     
-    displayResults(cheapest.totalCost, cheapest.detailedCosts, unit, cheapest.logOutput);
-
-    const dropOff = addressInput;
-
-    const isPit = cheapest.location.name.toLowerCase().includes("pit");
-    const isYard = cheapest.location.name.toLowerCase().includes("yard");
+        costResults = costResults.filter(result => result && !isNaN(result.totalCost));
     
-    if (isPit) {
-        const closestYardName = cheapest.location.closest_yard;
-        const closestYardAddress = yardLocations?.[closestYardName] || closestYardName;
-    
-        if (!closestYardAddress) {
-            console.warn("Missing closest yard address for pit delivery. Cannot draw route.");
+        if (costResults.length === 0) {
+            console.error("ERROR: No valid cost calculations available. Aborting process.");
             return;
-        } else {
-            const yardToPit = {
-                yardName: closestYardName,
-                yardAddress: closestYardAddress
-            };
-    
-            cheapest.sourceType = "pit";
-            cheapest.sourceAddress = cheapest.location.address;
-    
-            console.log("Drawing Pit Route:", { yardToPit, dropOff, finalClosestYard: finalClosestYardLocation });
-    
-            drawRouteOnMap({
-                yardToPit,
-                cheapest,
-                dropOff,
-                yardUsed: true,
-                finalClosestYard: finalClosestYardLocation.address
-            });
         }
-    }
     
-    if (isYard) {
-        cheapest.sourceType = "yard";
-        cheapest.sourceAddress = cheapest.location.address;
+        // Sort by total cost (cheapest first)
+        costResults.sort((a, b) => a.totalCost - b.totalCost);
     
-        console.log("Drawing Yard-only Route:", { dropOff, yardAddress: cheapest.sourceAddress });
+        // Store all results for navigation
+        allCostResults = costResults.map(result => ({
+            ...result,
+            unit,
+            // Optionally store any extra info needed for drawRouteOnMap
+            yardToPit: result.yardToPit || null,
+            finalClosestYard: finalClosestYardLocation?.address || null
+        }));
+        currentResultIndex = 0;
     
-        drawRouteOnMap({
-            yardToPit: null,
-            cheapest,
-            dropOff,
-            yardUsed: true,
-        });
-    }      
+        // Show the navigator and display the first (cheapest) result
+        updateResultNavigator();
 }
 
 
@@ -3084,6 +3046,72 @@ function displayResults(totalCost, detailedCosts, unit, logOutput = "") {
         breakdownElement.textContent = logOutput;
     }
 }
+
+
+
+
+
+
+
+
+
+let allCostResults = [];
+let currentResultIndex = 0;
+
+// Helper to update the result navigator UI and display the selected result
+function updateResultNavigator() {
+    const nav = document.getElementById("resultNavigator");
+    const counter = document.getElementById("resultCounter");
+    const prevBtn = document.getElementById("prevResult");
+    const nextBtn = document.getElementById("nextResult");
+
+    if (!allCostResults.length) {
+        nav.style.display = "none";
+        return;
+    }
+
+    nav.style.display = "flex";
+    counter.textContent = `${currentResultIndex + 1} of ${allCostResults.length}`;
+    prevBtn.disabled = currentResultIndex === 0;
+    nextBtn.disabled = currentResultIndex === allCostResults.length - 1;
+
+    // Show the selected result
+    const result = allCostResults[currentResultIndex];
+    displayResults(result.totalCost, result.detailedCosts, result.unit, result.logOutput);
+
+    // Redraw the map for this result
+    const dropOff = document.getElementById('address')?.value || '';
+    const yardLocations = window.yardLocations || {};
+    const finalClosestYard = result.finalClosestYard || (result.location && result.location.name && yardLocations[result.location.name]);
+    drawRouteOnMap({
+        yardToPit: result.yardToPit || null,
+        cheapest: result,
+        dropOff,
+        yardUsed: true,
+        finalClosestYard
+    });
+}
+
+// Attach event listeners for navigation arrows
+document.addEventListener("DOMContentLoaded", () => {
+    const prevBtn = document.getElementById("prevResult");
+    const nextBtn = document.getElementById("nextResult");
+
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener("click", () => {
+            if (currentResultIndex > 0) {
+                currentResultIndex--;
+                updateResultNavigator();
+            }
+        });
+        nextBtn.addEventListener("click", () => {
+            if (currentResultIndex < allCostResults.length - 1) {
+                currentResultIndex++;
+                updateResultNavigator();
+            }
+        });
+    }
+});
 
 
 
