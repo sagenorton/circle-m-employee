@@ -116,38 +116,6 @@ function initializeDirectionsServices() {
 
 
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    const prevBtn = document.getElementById("prevResult");
-    const nextBtn = document.getElementById("nextResult");
-
-    // Remove any existing listeners first (defensive)
-    if (prevBtn) prevBtn.replaceWith(prevBtn.cloneNode(true));
-    if (nextBtn) nextBtn.replaceWith(nextBtn.cloneNode(true));
-
-    const newPrevBtn = document.getElementById("prevResult");
-    const newNextBtn = document.getElementById("nextResult");
-
-    if (newPrevBtn && newNextBtn) {
-        newPrevBtn.addEventListener("click", () => {
-            if (currentResultIndex > 0) {
-                currentResultIndex--;
-                updateResultNavigator();
-            }
-        });
-        newNextBtn.addEventListener("click", () => {
-            if (currentResultIndex < allCostResults.length - 1) {
-                currentResultIndex++;
-                updateResultNavigator();
-            }
-        });
-    }
-});
-
-
-
-
-
 /* --------------------- Material and pricing data -------------------------- */
 const materialData = {
     // Soils
@@ -3159,6 +3127,27 @@ function updateResultNavigator() {
         finalClosestYard: result.finalClosestYard
     });
 }
+
+// Attach event listeners for navigation arrows (keep this as is)
+document.addEventListener("DOMContentLoaded", () => {
+    const prevBtn = document.getElementById("prevResult");
+    const nextBtn = document.getElementById("nextResult");
+
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener("click", () => {
+            if (currentResultIndex > 0) {
+                currentResultIndex--;
+                updateResultNavigator();
+            }
+        });
+        nextBtn.addEventListener("click", () => {
+            if (currentResultIndex < allCostResults.length - 1) {
+                currentResultIndex++;
+                updateResultNavigator();
+            }
+        });
+    }
+});
 
 
 
