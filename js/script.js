@@ -2775,6 +2775,20 @@ async function calculateCost() {
     
         // Show the navigator and display the first (cheapest) result
         updateResultNavigator();
+
+        if (allCostResults.length > 0) {
+        const result = allCostResults[0];
+        const dropOff = document.getElementById('address')?.value || '';
+        const yardLocations = window.yardLocations || {};
+        const finalClosestYard = result.finalClosestYard || (result.location && result.location.name && yardLocations[result.location.name]);
+        drawRouteOnMap({
+            yardToPit: result.yardToPit || null,
+            cheapest: result,
+            dropOff,
+            yardUsed: true,
+            finalClosestYard
+        });
+    }
 }
 
 
