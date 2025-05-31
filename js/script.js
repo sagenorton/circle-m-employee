@@ -2752,43 +2752,76 @@ async function calculateCost() {
             }
         }
     }
-    
-        costResults = costResults.filter(result => result && !isNaN(result.totalCost));
-    
-        if (costResults.length === 0) {
-            console.error("ERROR: No valid cost calculations available. Aborting process.");
-            return;
-        }
-    
-        // Sort by total cost (cheapest first)
-        costResults.sort((a, b) => a.totalCost - b.totalCost);
-    
-        // Store all results for navigation
-        allCostResults = costResults.map(result => ({
-            ...result,
-            unit,
-            // Optionally store any extra info needed for drawRouteOnMap
-            yardToPit: result.yardToPit || null,
-            finalClosestYard: finalClosestYardLocation?.address || null
-        }));
-        currentResultIndex = 0;
-    
-        // Show the navigator and display the first (cheapest) result
-        updateResultNavigator();
 
-        if (allCostResults.length > 0) {
-        const result = allCostResults[0];
-        const dropOff = document.getElementById('address')?.value || '';
-        const yardLocations = window.yardLocations || {};
-        const finalClosestYard = result.finalClosestYard || (result.location && result.location.name && yardLocations[result.location.name]);
+    costResults = costResults.filter(result => result && !isNaN(result.totalCost));
+
+    if (costResults.length === 0) {
+        console.error("ERROR: No valid cost calculations available. Aborting process.");
+        return;
+    }
+
+    // Sort by total cost (cheapest first)
+    costResults.sort((a, b) => a.totalCost - b.totalCost);
+
+    // Store all results for navigation
+    allCostResults = costResults.map(result => ({
+        ...result,
+        unit,
+        // Optionally store any extra info needed for drawRouteOnMap
+        yardToPit: result.yardToPit || null,
+        finalClosestYard: finalClosestYardLocation?.address || null
+    }));
+    currentResultIndex = 0;
+
+    // Show the navigator and display the first (cheapest) result
+    updateResultNavigator();
+
+    const dropOff = addressInput;
+
+    const isPit = cheapest.location.name.toLowerCase().includes("pit");
+    const isYard = cheapest.location.name.toLowerCase().includes("yard");
+    
+    if (isPit) {
+        const closestYardName = cheapest.location.closest_yard;
+        const closestYardAddress = yardLocations?.[closestYardName] || closestYardName;
+    
+        if (!closestYardAddress) {
+            console.warn("Missing closest yard address for pit delivery. Cannot draw route.");
+            return;
+        } else {
+            const yardToPit = {
+                yardName: closestYardName,
+                yardAddress: closestYardAddress
+            };
+    
+            cheapest.sourceType = "pit";
+            cheapest.sourceAddress = cheapest.location.address;
+    
+            console.log("Drawing Pit Route:", { yardToPit, dropOff, finalClosestYard: finalClosestYardLocation });
+    
+            drawRouteOnMap({
+                yardToPit,
+                cheapest,
+                dropOff,
+                yardUsed: true,
+                finalClosestYard: finalClosestYardLocation.address
+            });
+        }
+    }
+    
+    if (isYard) {
+        cheapest.sourceType = "yard";
+        cheapest.sourceAddress = cheapest.location.address;
+    
+        console.log("Drawing Yard-only Route:", { dropOff, yardAddress: cheapest.sourceAddress });
+    
         drawRouteOnMap({
-            yardToPit: result.yardToPit || null,
-            cheapest: result,
+            yardToPit: null,
+            cheapest,
             dropOff,
             yardUsed: true,
-            finalClosestYard
         });
-    }
+    }      
 }
 
 
