@@ -2802,52 +2802,6 @@ async function calculateCost() {
     // Show the navigator and display the first (cheapest) result
     updateResultNavigator();
 
-    const dropOff = addressInput;
-
-    const isPit = cheapest.location.name.toLowerCase().includes("pit");
-    const isYard = cheapest.location.name.toLowerCase().includes("yard");
-    
-    if (isPit) {
-        const closestYardName = cheapest.location.closest_yard;
-        const closestYardAddress = yardLocations?.[closestYardName] || closestYardName;
-    
-        if (!closestYardAddress) {
-            console.warn("Missing closest yard address for pit delivery. Cannot draw route.");
-            return;
-        } else {
-            const yardToPit = {
-                yardName: closestYardName,
-                yardAddress: closestYardAddress
-            };
-    
-            cheapest.sourceType = "pit";
-            cheapest.sourceAddress = cheapest.location.address;
-    
-            console.log("Drawing Pit Route:", { yardToPit, dropOff, finalClosestYard: finalClosestYardLocation });
-    
-            drawRouteOnMap({
-                yardToPit,
-                cheapest,
-                dropOff,
-                yardUsed: true,
-                finalClosestYard: finalClosestYardLocation.address
-            });
-        }
-    }
-    
-    if (isYard) {
-        cheapest.sourceType = "yard";
-        cheapest.sourceAddress = cheapest.location.address;
-    
-        console.log("Drawing Yard-only Route:", { dropOff, yardAddress: cheapest.sourceAddress });
-    
-        drawRouteOnMap({
-            yardToPit: null,
-            cheapest,
-            dropOff,
-            yardUsed: true,
-        });
-    }      
 }
 
 
