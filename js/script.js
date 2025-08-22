@@ -126,13 +126,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 43.00, "pro_price":47.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 20, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 20, "rate": 200}
         ]
     },
     "barrtech": {
@@ -142,13 +142,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 37.50, "pro_price": 41.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 20, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 20, "rate": 200}
         ]
     },
     "bedding_sand": {
@@ -158,13 +158,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 12.00, "pro_price": 13.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 20, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 20, "rate": 200}
         ]
     },
     "bio_infiltration_soil": {
@@ -173,13 +173,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 31.50, "pro_price": 34.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 20, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 20, "rate": 200}
         ]
     },
     "bio_retention_soil": {
@@ -188,13 +188,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 31.50, "pro_price": 34.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 20, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 20, "rate": 200}
         ]
     },
     "bio_retention_soil_no_sandy_loam": {
@@ -203,13 +203,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 31.50, "pro_price": 34.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 20, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 20, "rate": 200}
         ]
     },
     "economy_topsoil": {
@@ -219,13 +219,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 10.50, "pro_price": 12.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 20, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 20, "rate": 200}
         ]
     },
     "organic_cert_garden_soil": {
@@ -236,16 +236,16 @@ const materialData = {
             { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 18.00, "pro_price": 24.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 20, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 20, "rate": 200}
         ],
         "truck_D": [
-            {"name": "Semi Truck", "min": 50, "max": 50, "rate": 185}
+            {"name": "Semi Truck", "min": 50, "max": 50, "rate": 200}
         ]
     },
     "premium_screened_topsoil": {
@@ -255,13 +255,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 22.50, "pro_price": 24.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 20, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 20, "rate": 200}
         ]
     },
     "premium_turf": {
@@ -271,13 +271,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 25.50, "pro_price": 28.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 20, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 20, "rate": 200}
         ]
     },
     "sandy_loam": {
@@ -288,13 +288,13 @@ const materialData = {
             { "name": "DC PIT", "address": "611 W Denison-Chattaroy Rd, Deer Park, WA 99006", "elite_price": 10.50, "pro_price": 12.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 20, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 20, "rate": 200}
         ]
     },
     // Sand and Gravel
@@ -304,13 +304,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 10.25, "pro_price": 11.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "3_minus_crushed_concrete": {
@@ -319,13 +319,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 8.50, "pro_price": 9.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "3_minus_structural_round": {
@@ -335,13 +335,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 8.50, "pro_price": 9.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "58_114_basalt_minus_gravel": {
@@ -353,13 +353,13 @@ const materialData = {
             { "name": "Cooridor PIT", "address": "47.683646613378116, -117.55831219627463", "elite_price": 11.25, "pro_price": 12.38, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "58_114_granite_minus_gravel": {
@@ -371,13 +371,13 @@ const materialData = {
             { "name": "CDA PIT", "address": "47.716832, -117.035684", "elite_price": 13.50, "pro_price": 14.85, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "asphalt_grindings": {
@@ -388,13 +388,13 @@ const materialData = {
             { "name": "Hattenburgs PIT", "address": "47.757245449473906, -117.36542930230672", "elite_price": 25.38, "pro_price": 29.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "c33_sand": {
@@ -404,13 +404,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 12.00, "pro_price": 13.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "course_sand": {
@@ -420,13 +420,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 12.00, "pro_price": 13.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "pea_gravel": {
@@ -437,13 +437,13 @@ const materialData = {
             { "name": "Sullivan Pre-Mix PIT", "address": "1902 N Sullivan Rd, Spokane Valley, WA 99216", "elite_price": 16.50, "pro_price": 18.15, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "sand_gravel_concrete_mix": {
@@ -453,13 +453,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 32.50, "pro_price": 36.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "white_sand": {
@@ -469,13 +469,13 @@ const materialData = {
             { "name": "Lane Mountain PIT", "address": "3119 WA-231, Valley, WA 99181", "elite_price": 70.00, "pro_price": 74.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     // Rocks
@@ -486,13 +486,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 89.50, "pro_price": 97.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "1_14_champagne_rock": {
@@ -503,13 +503,13 @@ const materialData = {
             { "name": "White Stone Calcium PIT", "address": "2432 US-395, Chewelah, WA 99109", "elite_price": 94.50, "pro_price": 102.60, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "1_14_china_white_rock": {
@@ -519,13 +519,13 @@ const materialData = {
             { "name": "White Stone Calcium PIT", "address": "2432 US-395, Chewelah, WA 99109", "elite_price": 96.25, "pro_price": 104.50, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "1_granite_chips": {
@@ -535,13 +535,13 @@ const materialData = {
             { "name": "CDA Paving & Concrete PIT", "address": "47.716832, -117.035684", "elite_price": 28.88, "pro_price": 31.35, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "1_to_3_basalt_chips": {
@@ -552,13 +552,13 @@ const materialData = {
             { "name": "HardRock PIT", "address": "47.339342, -116.827806", "elite_price": 15.75, "pro_price": 17.10, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "2_blueslate_woodstone": {
@@ -569,13 +569,13 @@ const materialData = {
             { "name": "Iron Mountain/Scrivanich PIT", "address": "48.29835281266716, -117.14118002098378", "elite_price": 45.00, "pro_price": 47.25, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "2_elk_hide": {
@@ -586,13 +586,13 @@ const materialData = {
             { "name": "Elk Hide PIT", "address": "47.332319, -116.538415", "elite_price": 30.00, "pro_price": 31.50, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "34_river_rock": {
@@ -603,13 +603,13 @@ const materialData = {
             { "name": "JMAC PIT", "address": "47.728763, -117.034429", "elite_price": 18.38, "pro_price": 19.95, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "1_12_river_rock": {
@@ -620,13 +620,13 @@ const materialData = {
             { "name": "JMAC PIT", "address": "47.728763, -117.034429", "elite_price": 18.38, "pro_price": 19.95, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "2_4_river_rock": {
@@ -637,13 +637,13 @@ const materialData = {
             { "name": "CDA Paving & Concrete PIT", "address": "47.716832, -117.035684", "elite_price": 24.50, "pro_price": 26.60, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "34_114_basalt_chips": {
@@ -654,13 +654,13 @@ const materialData = {
             { "name": "HardRock PIT", "address": "47.339342, -116.827806", "elite_price": 15.75, "pro_price": 17.10, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "58_2_2_to_6_riverbed_mix": {
@@ -670,13 +670,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 59.50, "pro_price": 65.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "autumn_gold": {
@@ -687,13 +687,13 @@ const materialData = {
             { "name": "Lane Mountain PIT", "address": "3119 WA-231, Valley, WA 99181", "elite_price": 49.00, "pro_price": 53.20, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "black_lava_rock": {
@@ -703,13 +703,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 113.00, "pro_price": 124.50, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "red_lava_rock": {
@@ -719,13 +719,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 98.00, "pro_price": 107.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     // Barks
@@ -737,13 +737,13 @@ const materialData = {
             { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 24.00, "pro_price": 27.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 15, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 15, "rate": 135}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ],
         "truck_D": [
-            {"name": "Semi Truck", "min": 70, "max": 70, "rate": 185}
+            {"name": "Semi Truck", "min": 70, "max": 70, "rate": 200}
         ]
     },
     "engineered_playground_chips": {
@@ -754,10 +754,10 @@ const materialData = {
             { "name": "Premiere PIT", "address": "48.181955, -117.006770", "elite_price": 42.00, "pro_price": 47.25, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_D"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 25, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 25, "rate": 135}
         ],
         "truck_D": [
-            {"name": "Semi Truck", "min": 100, "max": 100, "rate": 185}
+            {"name": "Semi Truck", "min": 100, "max": 100, "rate": 200}
         ]
     },
     "fresh_fines": {
@@ -768,10 +768,10 @@ const materialData = {
             { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 24.00, "pro_price": 27.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 25, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 25, "rate": 135}
         ],
         "truck_D": [
-            {"name": "Semi Truck", "min": 100, "max": 100, "rate": 185}
+            {"name": "Semi Truck", "min": 100, "max": 100, "rate": 200}
         ]
     },
     "large_nugget": {
@@ -782,10 +782,10 @@ const materialData = {
             { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 48.00, "pro_price": 54.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 25, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 25, "rate": 135}
         ],
         "truck_D": [
-            {"name": "Semi Truck", "min": 100, "max": 100, "rate": 185}
+            {"name": "Semi Truck", "min": 100, "max": 100, "rate": 200}
         ]
     },
     "medium_fine": {
@@ -796,10 +796,10 @@ const materialData = {
             { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 24.00, "pro_price": 27.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 25, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 25, "rate": 135}
         ],
         "truck_D": [
-            {"name": "Semi Truck", "min": 100, "max": 100, "rate": 185}
+            {"name": "Semi Truck", "min": 100, "max": 100, "rate": 200}
         ]
     },
     "medium_shred": {
@@ -810,10 +810,10 @@ const materialData = {
             { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 20.00, "pro_price": 22.50, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 25, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 25, "rate": 135}
         ],
         "truck_D": [
-            {"name": "Semi Truck", "min": 100, "max": 100, "rate": 185}
+            {"name": "Semi Truck", "min": 100, "max": 100, "rate": 200}
         ]
     },
     "small_nugget": {
@@ -824,10 +824,10 @@ const materialData = {
             { "name": "Idaho Forest Group PIT", "address": "4447 E Chilco Rd, Athol, ID 83801", "elite_price": 76.00, "pro_price": 85.50, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_D"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 25, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 25, "rate": 135}
         ],
         "truck_D": [
-            {"name": "Semi Truck", "min": 100, "max": 100, "rate": 185}
+            {"name": "Semi Truck", "min": 100, "max": 100, "rate": 200}
         ]
     },
     // Boulders
@@ -838,13 +838,13 @@ const materialData = {
             { "name": "New Port Equipment PIT", "address": "328772 U.S. Rte 2, Newport, WA 99156", "elite_price": 77.50, "pro_price": 93.00, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_E"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_E": [
-            {"name": "Transfer Truck", "min": 16, "max": 30, "rate": 185}
+            {"name": "Transfer Truck", "min": 16, "max": 30, "rate": 200}
         ]
     },
     "round_basalt": {
@@ -854,13 +854,13 @@ const materialData = {
             { "name": "Cheney Boulder PIT", "address": "47.46744669160258, -117.545016359873", "elite_price": 60.00, "pro_price": 75.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_E"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_E": [
-            {"name": "Transfer Truck", "min": 16, "max": 30, "rate": 185}
+            {"name": "Transfer Truck", "min": 16, "max": 30, "rate": 200}
         ]
     },
     "round_granite": {
@@ -871,13 +871,13 @@ const materialData = {
             { "name": "JMAC PIT", "address": "47.728763, -117.034429", "elite_price": 62.50, "pro_price": 75.00, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_E"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_E": [
-            {"name": "Transfer Truck", "min": 16, "max": 30, "rate": 185}
+            {"name": "Transfer Truck", "min": 16, "max": 30, "rate": 200}
         ]
     },
     "valley_boulders": {
@@ -887,13 +887,13 @@ const materialData = {
             { "name": "Weusthoff Excavation PIT", "address": "48.187739, -117.730438", "elite_price": 105.00, "pro_price": 108.50, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_E"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_E": [
-            {"name": "Transfer Truck", "min": 16, "max": 30, "rate": 185}
+            {"name": "Transfer Truck", "min": 16, "max": 30, "rate": 200}
         ]
     },
     // Deicer Salts
@@ -904,13 +904,13 @@ const materialData = {
             { "name": "Marietta PIT", "address": "15201 E Marietta Ave, Spokane Valley, WA 99216", "elite_price": 194.60, "pro_price": 208.50, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "bulk_white_quicksalt": {
@@ -920,13 +920,13 @@ const materialData = {
             { "name": "Marietta PIT", "address": "15201 E Marietta Ave, Spokane Valley, WA 99216", "elite_price": 172.20, "pro_price": 184.50, "closest_yard": "1820 N University Rd, Spokane Valley, WA 99206", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "deicing_salt_sand_mix": {
@@ -936,13 +936,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 40.50, "pro_price": 45.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     },
     "deicing_salt_sand_torp_mix": {
@@ -952,13 +952,13 @@ const materialData = {
             { "name": "Hawthorne Yard", "address": "1208 E Hawthorne Rd, Spokane, WA 99217", "elite_price": 46.00, "pro_price": 51.00, "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
-            {"name": "Small Truck", "min": 1, "max": 8, "rate": 120}
+            {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
         ],
         "truck_B": [
-            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 160}
+            {"name": "Solo Truck", "min": 9, "max": 15, "rate": 175}
         ],
         "truck_C": [
-            {"name": "Super Truck", "min": 16, "max": 25, "rate": 185}
+            {"name": "Super Truck", "min": 16, "max": 25, "rate": 200}
         ]
     }
 };
@@ -1217,7 +1217,7 @@ async function getClosestYard(dropOffAddress) {
 async function calculateYardWholesaleTruckLoads(materialInfo, amountNeeded, unit, location, addressInput) {
     const wholesaleTruck = {
         truckName: "Side Dump/Truck n Pup",
-        rate: 185,
+        rate: 200,
         type: "wholesale"
     };
 
@@ -1648,7 +1648,7 @@ async function computeYardCosts(truckLoadInfo, yard, distances, addressInput, ma
 async function calculatePitWholesaleTruckLoads(materialInfo, amountNeeded, unit, location, addressInput, yardLocations) {
     const wholesaleTruck = {
       truckName: "Side Dump/Truck n Pup",
-      rate: 185,
+      rate: 200,
       type: "wholesale"
     };
   
