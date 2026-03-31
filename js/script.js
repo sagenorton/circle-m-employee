@@ -466,7 +466,7 @@ const materialData = {
         "sold_by": "ton",
         "locations": [
             { "name": "I90 Yard", "address": "1820 N University Rd, Spokane Valley, WA 99206", "elite_price": 79.80, "pro_price": 87.78, "trucks": ["truck_A", "truck_B", "truck_C"] },
-            { "name": "Lane Mountain PIT", "address": "3119 WA-231, Valley, WA 99181", "elite_price": 76.65, "pro_price": 84.32, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
+            { "name": "Lane Mountain PIT", "address": "3119 WA-231, Valley, WA 99181", "elite_price": 55.80, "pro_price": 61.38, "closest_yard": "1208 E Hawthorne Rd, Spokane, WA 99217", "trucks": ["truck_A", "truck_B", "truck_C"] }
         ],
         "truck_A": [
             {"name": "Small Truck", "min": 1, "max": 8, "rate": 135}
